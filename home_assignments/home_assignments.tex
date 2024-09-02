@@ -132,6 +132,8 @@ You have 3 observations: $x_1 = 2$, $y_1 = 5$, $x_2 = 1$, $y_2 = 10$, $x_3 = 3$,
     \item Find $\hb_0$, $\hb_1$ and $\hb_2$ if fitted values are given by $y_i = \hb_0 + \hb_1 x_i + \hb_2 x_i^2$.
 \end{enumerate}
 
+Note: you can use any programming language to calculate the $3\times 3$ matrix inverse but you should provide the code :)
+
 \item Simplify as much as possible the following expressions:
 \[
 A = \sum_{i=1}^n (x_i - \bar x)\bar x, \quad B = \sum_{i=1}^n (x_i - \bar x)\bar y, \quad C = \sum (x_i - \bar x)^2 + n \bar x^2.
@@ -143,9 +145,9 @@ You have $n$ observations $(x_1, y_1)$, \dots, $(x_n, y_n)$ and you estimate $\h
 What will happen with $\hb_0$ and $\hb_1$ in each of the following cases?
 
 \begin{enumerate}
-    \item You add $n$ more observations given by $(x_{n+i} = -x_i, y_{n+i} = y_i)$ for $i = 1$, $2$, \dots, $n$ to the original dataset.
-    \item You add one new observation $(y_{n+1} = \bar y, x_{n+1} = \bar x)$ to the original dataset.
     \item You copy every observation from the original dataset twice.
+    \item You add one new observation $(y_{n+1} = \bar y, x_{n+1} = \bar x)$ to the original dataset.
+    \item You add $n$ more observations given by $(x_{n+i} = -x_i, y_{n+i} = y_i)$ for $i = 1$, $2$, \dots, $n$ to the original dataset.
 \end{enumerate}
 
 Hint: you may start by guessing the answer with an experiment, but the proof is required :)
