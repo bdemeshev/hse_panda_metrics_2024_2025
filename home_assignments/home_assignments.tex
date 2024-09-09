@@ -109,9 +109,10 @@
 \newcommand \cN{\mathcal{N}}
 \newcommand \RR{\mathbb{R}}
 \newcommand \NN{\mathbb{N}}
-\newcommand{\hb}{\hat{\beta}}
 
 
+\newcommand{\hy}{\hat y}
+\newcommand{\hb}{\hat\beta}
 
 
 
@@ -119,7 +120,7 @@
 
 \section*{Home assignment 1}
 
-Deadline: 2024-09-16
+Deadline: 2024-09-16, 21:00.
 
 \begin{enumerate}
 \item Each day Elon Musk solves econometrics problems and creates posts in X.
@@ -155,6 +156,51 @@ Hint: you may start by guessing the answer with an experiment, but the proof is 
 \end{enumerate}
 
 
+
+\section*{Home assignment 2}
+
+Deadline: 2024-09-23, 21:00.
+
+\begin{enumerate}
+
+\item Each day Elon Musk solves econometrics problems and creates posts in X.
+Let $y_i$ be the number of solved problems and $x_i$ be the number of posts in X. 
+You have 3 observations: $x_1 = 2$, $y_1 = 5$, $x_2 = 1$, $y_2 = 10$, $x_3 = 3$, $y_3 = 4$.
+
+\begin{enumerate}
+    \item Calculate $SST$, $SSE$, $SSR$ and $R^2$ if we regress $y$ on $x$ with constant, ie $\hy_i = \hb_0 + \hb_1 x_i$.
+    \item Calculate $SST$, $SSE$, $SSR$ and $R^2$ if we regress $x$ on $y$ with constant, ie $\hat x_i = \hat\gamma_0 + \hat\gamma_1 y_i$.
+    \item Calculate the hat-matrix $H$ if we regress $y$ on $x$ with constant.
+\end{enumerate}
+
+
+Note: this exercises uses toy dataset from the previous HA, you may reuse old results provided that you state them explicitely. 
+
+\item Kamala Harris removes one observation 
+from the initial set of $n$ observations and reestimates the model $\hy_i = \hb_0 + \hb_1 x_i$ using OLS.
+
+\begin{enumerate}
+    \item Prove that the total sum of squares $SST$ can't increase. 
+    \item Provide an example of a dataset where explained sum of squares $SSE$ will decrease and a second example 
+    where it will increase. 
+\end{enumerate}
+  
+\item Consider the dataset of diamond prices,
+
+\url{https://github.com/vincentarelbundock/Rdatasets/raw/master/csv/ggplot2/diamonds.csv}.
+
+Here \verb|price| is the price of diamond in 1000\$ and \verb|carat| is the weight of a diamond in carats.
+Let $y_i$ be the log of diamond price in 1000\$ and $x_i$ be the log of diamond weight in carats. 
+
+\begin{enumerate}
+    \item Estimate the model $\hy_i = \hb_0 + \hb_1 x_i + \hb_2 x_i^2$ using \verb|LinearRegression| from \verb|sklearn.linear_model|.
+    \item Estimate the model $\hy_i = \hb_0 + \hb_1 x_i + \hb_2 x_i^2$ using \verb|ols| from \verb|statsmodels.formula.api|.
+    \item What is your point forecast of a price of a diamond with $2$ carats weight?
+\end{enumerate}
+
+Note: the first approach is faster and more stable while the second one gives you much more statistical information. 
+
+\end{enumerate}
 
 \end{document}
 
