@@ -202,6 +202,60 @@ Note: the first approach is faster and more stable while the second one gives yo
 
 \end{enumerate}
 
+
+\section*{Home assignment 3}
+
+Deadline: 2024-09-30, 21:00.
+
+\begin{enumerate}
+
+\item Consider the framework of simple regression model, $y_i = \beta_0 + \beta_1 x_i + u_i$, 
+$\E(u_i \mid x) = 0$, independent observations, $\Var(u_i \mid x) = \sigma^2$, $\Cov(u_i, u_j \mid x) = 0$ for $i\neq j$.
+We estimate regression $\hat y_i = \hb_0 + \hb_1 x_i$.
+
+We have $n=3$ observations with $x_i = i$.
+
+\begin{enumerate}
+    \item Find $\E(2\hb_0 + 3\hb_1 \mid x)$, $\Var(2\hb_0 + 3\hb_1 \mid x)$.
+    \item Find $\E(\hy_1 \mid x)$, $\Var(\hy_1 \mid x)$, $\E(\hat u_1 \mid x)$, $\Var(\hat u_1 \mid x)$.
+\end{enumerate}
+
+\item Consider the framework of simple regression model, $y_i = \beta_0 + \beta_1 x_i + u_i$, 
+$\E(u_i \mid x) = 0$, independent observations, $\Var(u_i \mid x) = \sigma^2$, $\Cov(u_i, u_j \mid x) = 0$ for $i\neq j$.
+We estimate regression $\hat y_i = \hb_0 + \hb_1 x_i$.
+
+We have $n$ observations with $\sum (x_i - \bar x)^2 > 0$.
+
+\begin{enumerate}
+    \item Find $\E(y_i - \bar y \mid x)$, $\E((y_i - \bar y)^2 \mid x)$.
+    \item Find the value of $\gamma$ such that the estimator $s^2 = \gamma \sum_{i=1}^n (y_i - \bar y)^2$ for $\sigma^2$ 
+    is unbiased conditional on $x$. 
+\end{enumerate}
+
+
+\item Consider the framework of simple regression model, $y_i = \beta_0 + u_i$, $\beta_0 = 2$,
+$\E(u_i \mid x) = 0$, independent observations, $\Var(u_i \mid x) = \sigma^2 = 4$, $\Cov(u_i, u_j \mid x) = 0$ for $i\neq j$.
+Random error is conditionally normally distributed, $(u_i \mid x) \sim \cN(0; 4)$.
+We estimate regression $\hat y_i = \hb_0 + \hb_1 x_i$.
+This setup means that we wrongly belive that $y_i$ depends on $x_i$.
+
+We have $n= 10$ observations with $x_i \sim \cN(0; 1)$.
+
+\begin{enumerate}
+    \item Generate the dataset and estimate the misspecified regression $B = 10000$. 
+    Draw the histogram of $\hb_0$, the histogram of $\hb_1$. 
+    Compare these histograms with true values of $\beta_0$ and $\beta_1$.
+    What can you conclude based on two histogram?
+    \item Draw the histogram of $R^2$ for simulations in point (a). 
+    Now repeat $B = 10000$ simulations for regression $\hat y_i = \hb_0 + \hb_1 x_i + \hb_2 x_i^2 + \hb_3 x_i^3$.
+    Draw the new histogram of $R^2$. 
+    Describe how this new histogram for $R^2$ is different from the first histogram for $R^2$.
+    Can you say that the quality of your new regression is higher?
+\end{enumerate}
+
+\end{enumerate}
+
+
 \end{document}
 
 % здесь проектируемая часть
