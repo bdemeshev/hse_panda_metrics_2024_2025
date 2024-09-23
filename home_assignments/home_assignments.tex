@@ -256,6 +256,44 @@ We have $n= 10$ observations with $x_i \sim \cN(0; 1)$.
 \end{enumerate}
 
 
+\section*{Home assignment 4}
+
+Deadline: 2024-10-07, 21:00.
+
+\begin{enumerate}
+\item Consider the simple regression model $y_i = \beta_0 + \beta_1 x_i + u_i$ with fitted values given by $\hat y_i = \hb_0 + \hb_1 x_i$ and $\hat u_i = y_i - \hat y_i$.
+We have $n = 3$ observations, $x_i = i$, all Gauss-Markov assumptions are satisfied,
+We use ordinary least squares.
+\begin{enumerate}
+    \item Write $\hb_1$ explicitely as a linear function of $(y_i)$, $\hb_1 = w_1 y_1 + w_2 y_2 + w_3 y_3$.
+    \item Propose different coefficients $w_1'$, $w_2'$, $w_3'$ such that the estimator $\hb_1' =  w_1' y_1 + w_2' y_2 + w_3' y_3$ is unbiased for $\hb_1'$.
+    \item Check that the variance of alternative estimator $\hb_1'$ is larger than the variance of OLS-estimator $\hb_1$.
+    \item Find all the diagonal elements of the hat-matrix $H_{ii}$. 
+    Which actual value $y_i$ has more influence on the forecasted value $\hat y_i$?
+\end{enumerate}
+
+
+\item Consider the multivariate regression model in a matrix form, $y = X\beta + u$ with fitted values given by $\hat y = X\hb$ and $\hat u = y - \hat y$.
+We have $n$ observations, all Gauss-Markov assumptions are satisfied,
+We use ordinary least squares.
+
+\begin{enumerate}
+    \item Find $\E(\hat u \mid X)$, $\E(\hat y \mid X)$.
+    \item Find $\Var(\hat u \mid X)$, $\Cov(\hat y, \hb \mid X)$, $\Cov(\hat u, \hb \mid X)$.
+\end{enumerate}
+
+\item Consider the simple regression model $y_i = \beta_0 + \beta_1 x_i + u_i$ with fitted values given by $\hat y_i = \hb_0 + \hb_1 x_i$ and $\hat u_i = y_i - \hat y_i$.
+We have $n$ observations, all Gauss-Markov assumptions are satisfied.
+Yusuf Dikeç copies every observation twice and estimates regression using OLS for $2n$ observations. 
+
+\begin{enumerate}
+    \item Which Gauss-Markov assumtions are violated for the doubled dataset of $2n$ observations?
+    \item Find the true variance of $\hb_1$ in the regression on $2n$ observations assuming Gauss-Markov assumptions for the original dataset.
+    \item Find the variance of $\hb_1$ in the regression on $2n$ observations wrongly assuming Gauss-Markov assumptions for the doubled dataset.
+\end{enumerate}
+
+\end{enumerate}
+
 \end{document}
 
 % здесь проектируемая часть
