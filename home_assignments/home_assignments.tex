@@ -114,6 +114,10 @@
 \newcommand{\hy}{\hat y}
 \newcommand{\hb}{\hat\beta}
 
+\usepackage{mathtools}
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+\DeclarePairedDelimiter{\scalp}{\langle}{\rangle}
 
 
 \begin{document}
@@ -228,7 +232,7 @@ We have $n$ observations with $\sum (x_i - \bar x)^2 > 0$.
 
 \begin{enumerate}
     \item Find $\E(y_i - \bar y \mid x)$, $\E((y_i - \bar y)^2 \mid x)$.
-    \item Find the value of $\gamma$ such that the estimator $s^2 = \gamma \sum_{i=1}^n (y_i - \bar y)^2$ for $\sigma^2$ 
+    \item It possible find the value of $\gamma$ such that the estimator $s^2 = \gamma \sum_{i=1}^n (y_i - \bar y)^2$ for $\sigma^2$ 
     is unbiased conditional on $x$. 
 \end{enumerate}
 
@@ -258,7 +262,7 @@ We have $n= 10$ observations with $x_i \sim \cN(0; 1)$.
 
 \section*{Home assignment 4}
 
-Deadline: 2024-10-07, 21:00.
+Deadline: 2024-10-07, 23:59.
 
 \begin{enumerate}
 \item Consider the simple regression model $y_i = \beta_0 + \beta_1 x_i + u_i$ with fitted values given by $\hat y_i = \hb_0 + \hb_1 x_i$ and $\hat u_i = y_i - \hat y_i$.
@@ -293,6 +297,99 @@ Yusuf Dikeç copies every observation twice and estimates regression using OLS f
 \end{enumerate}
 
 \end{enumerate}
+
+
+\section*{Home assignment 5}
+
+Deadline: No deadline. 
+
+If you wish to upload something somewhere then you are free to submit econometrics memes to the chat. 
+
+
+\section*{Home assignment 6}
+
+Deadline: 2024-10-21, 23:59.
+
+\begin{enumerate}
+    \item Consider the model $y_i = \beta_x x_i + \beta_w w_i + u_i$ with
+    \[
+    \begin{pmatrix}
+        x_i \\
+        w_i \\
+        u_i \\
+    \end{pmatrix} \sim \cN\left(
+        \begin{pmatrix}
+            0 \\
+            0 \\
+            0 \\
+        \end{pmatrix};
+    \begin{pmatrix}
+        5 & 3 & 0 \\
+        3 & 10 & 0 \\
+        0 & 0 & 1
+    \end{pmatrix}
+    \right).
+    \]
+    Observations are independent. 
+    \begin{enumerate}
+        \item Find the probability limit of $\hat \gamma_x$ in regression $\hat y_i = \hat \gamma_x x_i$.
+        \item Is $\hat \gamma_x$ consistent estimator of $\beta_x$?
+        \item Find the conditional expected value $\E(y_i \mid x_i)$.
+        
+        Hint: it should be of the form $\alpha x_i$, where $\alpha$ is a function of $\beta_x$ and $\beta_w$.
+        \item Is $\hat \gamma_x$ consistent estimator of $\alpha$? 
+    \end{enumerate}
+
+    \item Consider the simple regression model $y_i = \beta_0 + \beta_1 x_i + u_i$.
+    We do not observe $x_i$. Instead we observe two independent measurements of $x_i$: $x'_i$ and $x''_i$.
+    Here $x'_i = x_i + v_i$ and $x''_i = x_i + w_i$, where $v_i$ and $w_i$ are measurement errors.
+
+    Observations are independent, random variables $x_i$, $u_i$, $v_i$ and $w_i$ are independent. 
+    Let's denote their variance by $\Var(x_i) = \sigma^2_x$, $\Var(u_i) = \sigma^2_u$, $\Var(v_i) = \sigma^2_v$, $\Var(w_i) = \sigma^2_w$.
+
+    \begin{enumerate}
+        \item Check whether the estimator $\hb_1^A$ is consistent for $\beta_1$:
+        \[
+        \hb_1^A = \frac{\sum (y_i - \bar y)(x'_i - \bar x')}{\sum (x'_i - \bar x')(x''_i - \bar x'')}.
+        \]        
+        \item Check whether the estimator $\hb_1^B$ is consistent for $\beta_1$:
+        \[
+            \hb_1^B = \frac{\sum (y_i - \bar y)(x'_i - \bar x')}{\sum (x''_i - \bar x'')^2}.
+        \]
+    \end{enumerate}
+    
+    \item Consider again the dataset of diamond prices,
+
+    \url{https://github.com/vincentarelbundock/Rdatasets/raw/master/csv/ggplot2/diamonds.csv}.
+    
+    Here \verb|price| is the price of diamond in \$ and \verb|carat| is the weight of a diamond in carats.
+    Let $y_i$ be the log of diamond price in 1000\$ and $x_i$ be the log of diamond weight in carats. 
+    
+   \begin{enumerate}
+    \item Reestimate the model $\hy_i = \hb_0 + \hb_1 x_i + \hb_2 x_i^2$ using \verb|ols| from \verb|statsmodels.formula.api|.
+   \end{enumerate}
+   Let's believe in Gauss~— Markov assumptions for this case. 
+   \begin{enumerate}[resume]
+    \item Extract $SSRes$, $SST$, $SSExpl$,  $R^2$ and $\hat\sigma^2$.
+    \item Write down true $\Var(\hat\beta \mid X)$ matrix. 
+    
+    Hint: your matrix should contain unknown $\sigma^2$. 
+    \item Write down the estimate of $\Var(\hat\beta \mid X)$ matrix. 
+    
+    Hint: no unknown parameters here. 
+
+    \item Calculate all diagonal entries $H_{ii}$ and select the most influential observation with highest $\partial \hat y_i /\partial y_i$.
+    
+    Hint: the whole matrix $H$ is really HUGE here, please do not try to calculate it, you need only diagonal elements. 
+
+    \item Draw the scatterplot of $\abs{\hat u_i}$ against $x_i$. 
+    
+    Does this plot suggests that Gauss~— Markov assumptions are satisfied?
+   \end{enumerate}
+
+\end{enumerate}
+
+
 
 \end{document}
 
