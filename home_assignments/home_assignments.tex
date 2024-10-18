@@ -1,6 +1,8 @@
 % arara: xelatex
 \documentclass[12pt]{article}
 
+% Econometrics, 2024-2025
+
 % \usepackage{physics}
 
 
@@ -94,6 +96,7 @@
 \DeclareMathOperator{\Cov}{\mathbb{C}ov}
 \DeclareMathOperator{\Corr}{\mathbb{C}orr}
 \DeclareMathOperator{\Var}{\mathbb{V}ar}
+\DeclareMathOperator{\hVar}{\widehat{\mathbb{V}ar}}
 \DeclareMathOperator{\col}{col}
 \DeclareMathOperator{\row}{row}
 
@@ -389,11 +392,124 @@ Deadline: 2024-10-21, 23:59.
 
 \end{enumerate}
 
+\section*{Home assignment 7}
+
+Deadline: 2024-11-02, 23:59.
+
+\begin{enumerate}
+    \item Consider a simple regression model with Gauss~— Markov assumptions, $y_i = \beta_0 + \beta_1 x_i + u_i$.
+    Random errors are jointly normal $u \mid X \sim \cN(0; \sigma^2 I)$.
+
+    You know that 
+    \[
+    X^TX = \begin{pmatrix}
+        100 & 200 \\
+        ? & 600 \\
+    \end{pmatrix}, \quad X^T y = \begin{pmatrix}
+        0 \\
+        300 \\
+    \end{pmatrix}, \quad y^T y = 1000.
+    \]
+    \begin{enumerate}
+        \item By looking at $X^TX$ recover the number of observations. 
+        \item Estimate $\hb_0$, $\hb_1$, $\hVar(\hb \mid X)$.
+        \item Test $H_0: \beta_1 = 0$ against $H_1: \beta_1 \neq 0$ at significance level $\alpha = 0.05$.
+        \item Construct 99\% confidence interval for $\beta_0$ and $\beta_1$.
+        \item Esimate $\E(y_{101} \mid x_{101} = 5)$ and construct 99\% confidence interval for $\E(y_{101} \mid x_{101} = 5)$.
+    \end{enumerate}
+
+    \item You estimated the vector $\beta = (\beta_0, \beta_1, \beta_2, \beta_3)^T$ in the model 
+    \[
+    y_i = \beta_0 + \beta_1 x_i + \beta_2 w_i + \beta_3 h_i + u_i
+    \]
+    using OLS with $200$ observations. 
+    Gauss~— Markov assumptions are satisfied. 
+    Random errors are jointly normal $u \mid X \sim \cN(0; \sigma^2 I)$.
+
+    You know that 
+    \[
+    \hb = \begin{pmatrix}
+        0.2 \\
+        0.5 \\
+        0.3 \\
+        0.6 \\
+    \end{pmatrix}, \quad 
+    \hVar(\hb \mid X) = 
+    0.001 \cdot \begin{pmatrix}
+        63.14 & -14.78 & 15.56 & 0.335 \\
+        ?  & 7.912 & -3.943 & -1.065 \\
+        ?  &   ?  &   6.939 & -1.375 \\
+        ?  &   ?  &    ?  & 1.178 \\
+    \end{pmatrix}.
+    \]
+    \begin{enumerate}
+        \item Test $H_0$: $\beta_1 = \beta_2$ using significance level $\alpha = 0.05$ against $H_1$: $\beta_1 \neq \beta_2$.
+        \item Test $H_0$: $\beta_1 + \beta_2 = 1$ using significance level $\alpha = 0.05$ against $H_1$: $\beta_1 + \beta_2 \neq 1$.
+        \item Construct 99\% confidence interval for $\beta_1 + 2\beta_2 + 3\beta_3$.
+    \end{enumerate}
+
+
+    \item Researches suspect that «College students often have poor sleep habits, 
+    staying up late and sleeping short hours, 
+    and a great deal of research suggests that lack of sleep can harm cognitive performance». 
+
+    Let's build a model where dependent variable is \verb|term_gpa| and other variables below as predictors:
+    \begin{itemize}
+    \item \verb|demo_race|: binary label for underrepresented and non-underrepresented students; 
+    
+    \item \verb|demo_gender|: Gender of the subject (male = 0, female = 1);
+    \item \verb|bedtime_mssd|: Mean successive squared difference of bedtime;
+    
+    \item \verb|TotalSleepTime|: Average time in bed in minutes;
+    
+    \item \verb|cum_gpa|: Cumulative GPA (out of 4.0), for semesters before the one being studied;
+    
+    \item \verb|term_gpa|: End-of-term GPA (out of 4.0) for the semester being studied;
+    
+    \item \verb|units_score|: Standardized number of course units carried in the term;
+    \end{itemize}
+    
+    More info can be found at: 
+    
+    \url{https://cmustatistics.github.io/data-repository/psychology/cmu-sleep.html}.
+    
+    \begin{enumerate}
+        \item Check that the dataset is imported correctly! Remove missing observations. 
+        \item Estimate the model using OLS.
+        \item Test the hypothesis that the effect of \verb|TotalSleepTime| is zero.
+        \item Test the hypothesis that the sum of effects for \verb|demo_gender|, \verb|bedtime_mssd| and \verb|units_score| is nonzero.
+        \item Test the hypothesis that additional two hours of sleep every day gives additional 0.3 gpa point from 5 in average.
+        \item Test the hypothesis that the parameters \verb|demo_gender|, \verb|bedtime_mssd| and \verb|units_score| are jointly insignificant.
+    \end{enumerate}
+    
+
+\end{enumerate}
 
 
 \end{document}
 
 % здесь проектируемая часть
+
+\section*{Home assignment 8}
+
+Deadline: 2024-11-06, 23:59.
+
+
+\begin{enumerate}
+\item 
+
+\item 
+
+\item 
+
+
+Using naive bootstrap in regression:
+
+\begin{enumerate}
+    \item Construct 99\% confidence interval for $\beta_1$ and compare it with classic confidence
+\end{enumerate}
+
+\end{enumerate}
 
 \end{document}
 
