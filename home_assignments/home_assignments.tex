@@ -396,6 +396,26 @@ Deadline: 2024-10-21, 23:59.
 
 Deadline: 2024-11-02, 23:59.
 
+
+% n = 200
+% set.seed(777)
+% u = rnorm(n, sd=2)
+% x = rnorm(n, sd=3)
+% w = rnorm(n, mean=x - 3, sd=2)
+% h = x + w + rnorm(n, sd=4)
+% y = 0.5 + 0.5*x + 0.5*w + 0.5*h + u
+% X = cbind(1, x, w, h)
+% XX = crossprod(X)
+% Xy = crossprod(X, y)
+% hb = solve(XX, Xy)
+% hb
+% yhat = X %*% hb
+% uhat = y - yhat
+% SSR = sum(uhat^2)
+% hvar = SSR / (n - 4) * solve(XX)
+% hvar
+
+
 \begin{enumerate}
     \item Consider a simple regression model with Gauss~— Markov assumptions, $y_i = \beta_0 + \beta_1 x_i + u_i$.
     Random errors are jointly normal $u \mid X \sim \cN(0; \sigma^2 I)$.
