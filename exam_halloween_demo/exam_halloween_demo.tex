@@ -108,6 +108,9 @@
 \DeclareMathOperator{\pCorr}{\mathrm{pCorr}}
 \DeclareMathOperator{\col}{col}
 \DeclareMathOperator{\row}{row}
+\DeclareMathOperator{\hCov}{\widehat{Cov}}
+\DeclareMathOperator{\hVar}{\widehat{Var}}
+
 
 \let\P\relax
 \DeclareMathOperator{\P}{\mathbb{P}}
@@ -246,6 +249,7 @@ All topics before (and including) bootstrap may be included.
         \item Find $\Cov(y, \hb \mid X)$.
     \end{enumerate}
 
+
     \item Consider two multivariate regressions estimated by OLS.
     Regression $A$: 
     \[
@@ -271,6 +275,58 @@ All topics before (and including) bootstrap may be included.
         \item Are residuals in both regressions equal?
     \end{enumerate}
 
+\end{enumerate}
+
+\section*{Demo variant «Pumpkin» solution}
+\begin{enumerate}
+    \item 
+    \begin{enumerate}
+        \item The confidence interval for $\beta_x$ is $[0.2 - 1.96 \cdot \sqrt{4.5}, 0.2 + 1.96 \cdot \sqrt{4.5}]$.
+        \item The confidence interval for conditional expected value of dependent variable is centered at conditional expected value:
+        \[
+        \hat\mu = \E(y \mid x = 1, b = -1, c = 2) = 3 + 0.2 \cdot 1 + 0.5 \cdot (-1) - 0.7 \cdot 2
+        \]
+        \[
+        \hat v =
+        \]
+        Confidence interval is 
+        \[
+            [\hat\mu - 1.96 \sqrt{\hat v}, \hat\mu + 1.96 \sqrt{\hat v}].
+        \]
+        \item The test statistic is $t = \frac{\hb_x + \hb_b - 1}{\sqrt{\hVar(\hb_x) + \hVar(\hb_b) - 2 \hCov(\hb_x, \hb_b)}}$.
+    \end{enumerate}
+
+    \item 
+    \begin{enumerate}
+        \item $\E(\hb_1' \mid x) = \beta_1$
+        \item $\hb_1'$ is consistent.
+    \end{enumerate}
+
+    \item 
+    \begin{enumerate}
+        \item $F = \frac{(500 - 300) / 3}{300 / (300 - 4)}$.
+        \item $F = \frac{(300 - 250) / 2}{250 / (300 - 4)}$.
+        \item $F = \frac{(300 - 150) / 100}{150 / (300 - 4 - 100)}$.
+    \end{enumerate}
+
+    \item 
+    \begin{enumerate}
+        \item % $\hb_0 = 1$, $\hb_1 = 2$.
+        \item % $\SSR = 2$, $\SSE = 8$, $\SST = 10$, $R^2 = 1 - 0.2 = 0.8$.
+        \item % $\hat \sigma^2 = 2/3$.
+    \end{enumerate}
+    \item
+    \begin{enumerate}
+        \item $\E(\hb \mid X) = \beta$, $\E(\hb) = \beta$.
+        \item $\Var(\hb \mid X) = \sigma^2 (X'X)^{-1} X' W X (X'X)^{-1}$.
+        \item No, it will not be valid as it is based on different covariance matrix of $\hb$.
+        \item $\Cov(y, \hb \mid X) = ...$.
+    \end{enumerate}
+    \item 
+    \begin{enumerate}
+        \item Estimators $\hb_2$ and $\hat \gamma$ are equal.
+        \item Residuals in both regressions are equal.
+    \end{enumerate}
 \end{enumerate}
 
 \section*{Demo variant «Bat»}
@@ -330,6 +386,7 @@ All topics before (and including) bootstrap may be included.
         \item Find $\Cov(\hb, y' - \hat y' \mid X, X')$.
     \end{enumerate}
 
+
     \item Let $u = (u_1, u_2, u_3)$ be the vector of iid standard normal random variables. 
     Denote the linear span of the vector $(1, 1, 0)$ be $V$.
     Let $W = V^{\perp}$ be the orthogonal complement of $V$ in $\RR^3$. 
@@ -344,6 +401,7 @@ All topics before (and including) bootstrap may be included.
         \item Find the distribution of $2v^Tv/(w^Tw)$.
     \end{enumerate}
 
+
     \item Assume that the true model is $y_i = \beta_0 +  u_i$ and $u_i$ are iid normally distributed with zero mean and variance $\sigma^2$.
     There are $n$ observations.
     We estimate regression $\hat y_i = \hat \beta_0 + \hat\beta_1 x_i$ using OLS.
@@ -354,13 +412,44 @@ All topics before (and including) bootstrap may be included.
         \item Find $\E(R^2_{adj})$ for the adjusted coefficient 
         \[
             R^2_{adj} = 1 - \frac{\SSR / (n - 2)}{\SST / (n - 1)}.
-        \]
-        
+        \]        
     \end{enumerate}
 
 \end{enumerate}
 
-\end{document}
+
+\section*{Demo variant «Pumpkin» solution}
+\begin{enumerate}
+\item 
+\item 
+\item 
+\item 
+\begin{enumerate}
+    \item $\E(\hat y' \mid X, X') = X' \beta$.
+    \item $\Var(y' - \hat y' \mid X, X') = ...$.
+    \item $\Cov(\hb, y' - \hat y' \mid X, X') = 0$.
+\end{enumerate}
+
+\item 
+\begin{enumerate}
+    \item $\dim V = 1$, $\dim W = 2$.
+    \item $H = \begin{pmatrix}
+        1/2 & 1/2 & 0 \\
+        1/2 & 1/2 & 0 \\
+        0 & 0 & 0 \\
+    \end{pmatrix}$.
+    \item $v^Tv \sim \chi^2_1$, $\norm{w}^2 \sim \chi^2_2$.
+    \item $2v^Tv/(w^Tw) \sim F_{1,2}$.
+\end{enumerate}
+\item 
+\begin{enumerate}
+    \item $\E(\hat\beta_1) = 0$, $\E(\hat\beta_1 \mid x) = 0$.
+    \item $\E(R^2) = ...$. Should be positive :)
+    \item $\E(R^2_{adj}) = 0$.
+\end{enumerate}
+
+\end{enumerate}
+
 
 %Из определения условного ожидания, $\E(X \mid A) = \E(X \cdot I_A) / \P(A)$, 
 %легко получаются определения условной дисперсии, $\Var(X \mid A) = \E(X^2 \mid A) - (\E(X \mid A))^2$,
