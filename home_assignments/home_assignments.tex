@@ -113,6 +113,10 @@
 \newcommand \RR{\mathbb{R}}
 \newcommand \NN{\mathbb{N}}
 
+\newcommand{\dU}{\mathrm{Unif}}
+\newcommand{\dUnif}{\mathrm{Unif}}
+
+\DeclareMathOperator{\loss}{loss}
 
 \newcommand{\hy}{\hat y}
 \newcommand{\hb}{\hat\beta}
@@ -506,30 +510,66 @@ Deadline: 2024-11-02, 23:59.
 \end{enumerate}
 
 
-\end{document}
 
-% здесь проектируемая часть
 
 \section*{Home assignment 8}
 
-Deadline: 2024-11-06, 23:59.
+Deadline: 2024-11-27, 23:59.
 
 
 \begin{enumerate}
-\item 
-
-\item 
-
-\item 
-
-
-Using naive bootstrap in regression:
+\item Let $A$, $B$, $a$, $b$ — be matrices and vectors of constants and $V$ and $v$ — matrix and vector that depends on some arguments. 
 
 \begin{enumerate}
-    \item Construct 99\% confidence interval for $\beta_1$ and compare it with classic confidence
+    \item Find $d(AVB + v^Tb + a^T v)$.
+    \item By applying differential $d$ to the identity $V \cdot V^{-1} = I$ find $d(V^{-1})$.
+    \item Assuming that $A$ is symmetric find $d(v'Av)$.
+    \item Assuming that $A$ is symmetric find $d(v'Av / v'v)$.
 \end{enumerate}
+
+\item Consider the simple regression with $L^1$-penalty with three observations, $y = (1, 3, 5)$, $x = (1, 2, 2)$.
+The loss function to be minimized is given by 
+\[
+\loss(\hb_0, \hb_1) = \sum_i (y_i - \hat y_i)^2 + \lambda \cdot \abs{\hb_1}, \quad \hat y_i = \hb_0 + \hb_1 x_i.
+\] 
+
+\begin{enumerate}
+    \item Find optimal coefficients for $\lambda = 0$. 
+    \item Find optimal coefficients for $\lambda = +\infty$.
+    \item Find optimal coefficients for $\lambda = 1$.
+    \item Find optimal coefficients for any $\lambda \geq 0$.
+\end{enumerate}
+
+\item Consider the following experiment. 
+Generate $n=200$ observations under for the model $y_i = -2 + 7 x_i + 2 w_i + u_i$,
+where $w_i = x_i^2 + v_i$.
+Random variables $x_i$, $v_i$ and $u_i$ are independent, $x_i \sim \cN(1; 1)$, $v_i \sim \cN(1; 1)$, $u_i \sim \dUnif[-5; 5]$. 
+
+Simulate the experiment once.
+\begin{enumerate}
+    \item Estimate coefficients using OLS.
+    \item Find 95\% classic confidence interval for $\beta_w$.
+    \item Find 95\% pair bootstrap confidence interval for $\beta_w$.
+    \item Find 95\% t-statistic bootstrap confidence interval for $\beta_w$.
+    \item Find 95\% pair bootstrap confidence interval for $\beta_x - \beta_w^3$.
+    \item Test hypothesis $H_0$: $\beta_x = \beta_w^3$ at 5\% significance level against  $H_1$: $\beta_x \neq \beta_w^3$.
+\end{enumerate}
+
+Now simulate the experiment 5000 times. 
+\begin{enumerate}[resume]
+    \item For each simulation do points (a-e).
+    \item Estimate the real coverage probability of classic confidence interval for $\beta_w$. 
+    
+    Hint: Just count the number of simulation where true beta belongs to the interval :)
+    \item Estimate the real coverage probability of pair bootstrap confidence interval for $\beta_w$. 
+    \item Estimate the real coverage probability of t-statistic bootstrap confidence interval for $\beta_w$.
+    \item Estimate the real coverage probability of pair bootstrap confidence interval for $\beta_x - \beta_w^3$. 
+\end{enumerate}
+
 
 \end{enumerate}
 
 \end{document}
 
+
+% проектируемая часть ниже ....

@@ -1,0 +1,258 @@
+% arara: xelatex
+\documentclass[12pt]{article}
+
+% \usepackage{physics}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+
+\usepackage{tikzducks}
+
+\usepackage{tikz} % картинки в tikz
+\usetikzlibrary{shapes, arrows, positioning}
+\usepackage{microtype} % свешивание пунктуации
+
+\usepackage{array} % для столбцов фиксированной ширины
+
+\usepackage{indentfirst} % отступ в первом параграфе
+
+\usepackage{sectsty} % для центрирования названий частей
+\allsectionsfont{\centering}
+
+\usepackage{amsmath, amsfonts, amssymb} % куча стандартных математических плюшек
+
+\usepackage{comment}
+
+\usepackage[top=2cm, left=1.2cm, right=1.2cm, bottom=2cm]{geometry} % размер текста на странице
+
+\usepackage{lastpage} % чтобы узнать номер последней страницы
+
+\usepackage{enumitem} % дополнительные плюшки для списков
+%  например \begin{enumerate}[resume] позволяет продолжить нумерацию в новом списке
+\usepackage{caption}
+
+\usepackage{url} % to use \url{link to web}
+
+
+\newcommand{\smallduck}{\begin{tikzpicture}[scale=0.3]
+    \duck[
+        cape=black,
+        hat=black,
+        mask=black
+    ]
+    \end{tikzpicture}}
+
+\usepackage{fancyhdr} % весёлые колонтитулы
+\pagestyle{fancy}
+\lhead{Econometrics for pandas}
+\chead{}
+\rhead{Midterm exam}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\usepackage{tcolorbox} % рамочки!
+
+\usepackage{todonotes} % для вставки в документ заметок о том, что осталось сделать
+% \todo{Здесь надо коэффициенты исправить}
+% \missingfigure{Здесь будет Последний день Помпеи}
+% \listoftodos - печатает все поставленные \todo'шки
+
+
+% более красивые таблицы
+\usepackage{booktabs}
+% заповеди из докупентации:
+% 1. Не используйте вертикальные линни
+% 2. Не используйте двойные линии
+% 3. Единицы измерения - в шапку таблицы
+% 4. Не сокращайте .1 вместо 0.1
+% 5. Повторяющееся значение повторяйте, а не говорите "то же"
+
+
+\setcounter{MaxMatrixCols}{20}
+% by crazy default pmatrix supports only 10 cols :)
+
+
+\usepackage{fontspec}
+\usepackage{libertine}
+\usepackage{polyglossia}
+
+\setmainlanguage{russian}
+\setotherlanguages{english}
+
+% download "Linux Libertine" fonts:
+% http://www.linuxlibertine.org/index.php?id=91&L=1
+% \setmainfont{Linux Libertine O} % or Helvetica, Arial, Cambria
+% why do we need \newfontfamily:
+% http://tex.stackexchange.com/questions/91507/
+% \newfontfamily{\cyrillicfonttt}{Linux Libertine O}
+
+\AddEnumerateCounter{\asbuk}{\russian@alph}{щ} % для списков с русскими буквами
+% \setlist[enumerate, 2]{label=\asbuk*),ref=\asbuk*}
+
+%% эконометрические сокращения
+\DeclareMathOperator{\Cov}{\mathbb{C}ov}
+\DeclareMathOperator{\Corr}{\mathbb{C}orr}
+\DeclareMathOperator{\Var}{\mathbb{V}ar}
+\DeclareMathOperator{\col}{col}
+\DeclareMathOperator{\row}{row}
+
+\DeclareMathOperator{\rank}{rank}
+
+\let\P\relax
+\DeclareMathOperator{\P}{\mathbb{P}}
+
+\DeclareMathOperator{\E}{\mathbb{E}}
+% \DeclareMathOperator{\tr}{trace}
+\DeclareMathOperator{\card}{card}
+
+\DeclareMathOperator{\Convex}{Convex}
+\DeclareMathOperator{\plim}{plim}
+
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cF}{\mathcal{F}}
+
+
+\newcommand{\SST}{\text{SST}}
+\newcommand{\SSR}{\text{SS}^{\text{res}}}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\hb}{\hat{\beta}}
+\newcommand{\dPois}{\mathrm{Pois}}
+
+\usepackage{mathtools}
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+\DeclarePairedDelimiter{\scalp}{\langle}{\rangle}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+
+
+
+\begin{document}
+
+\begin{enumerate}
+    \item {[10]} In a white room with soft walls Michael has found four vectors from $\RR^n$: $a$, $b$, $c$ and $d$.
+    He discovered that $a + 2b = 3c + 6d$ and $\norm{a} = \norm{c} = \norm{d} = 3$ with scalar product $\scalp{a,c} = 1$. 
+    The vector $d$ is orthogonal to $a$ and $c$.
+
+    Michael's identities would like to estimate two different regressions using OLS: $\hat b = \hb_1 a + \hb_2 c$ and $\hat a = \hat \gamma c$.
+    \begin{enumerate}
+        \item {[5]} Provide estimates of coefficients where possible.
+        \item {[5]} Calculate sum of squared residuals $\SSR$ and total sum of squares $\SST$ where possible.
+    \end{enumerate}
+    
+
+    \item {[10]} Consider the model $y = X\beta + u$ where $\beta$ is non-random, $\E(u \mid X ) = m(X) \neq 0$. 
+    The matrix $X$ of size $n\times k$ has $\rank X = k$ and $\Var(u \mid X) = \sigma^2 I$.
+    Let $\hb$ be the standard OLS estimator of $\beta$.
+
+    \begin{enumerate}
+        \item {[3]} Find $\E(\hb \mid X)$. Is it possible that $\hb$ is unconditionally unbiased?
+        \item {[3]} Find $\Var(\hb \mid X)$.
+        \item {[1]} Will the default confidence interval for $\beta$ be valid in this case? Explain shortly why. 
+        \item {[3]} Find $\Cov(\hat u, \hb \mid X)$.
+    \end{enumerate}
+
+%    \item {[10]} Donald Trump estimates the simple regression $\hat y_i = \hb_0 + \hb_1 x_i$.
+%    He has $300$ observations, $\sum x_i = 300$, $\sum y_i = 0$, $\sum x_i^2 = 30 000$, $\sum x_i y_i = 100$, $\sum y_i^2 = 10000$.
+
+%    \begin{enumerate}
+%        \item {[4]} Estimate coefficients $\hb_0$ and $\hb_1$.
+%        \item {[4]} Calculate 95\% confidence interval for $\beta_1$.
+%        \item {[2]} Test hypothesis that $\beta_1 = 1$ against alternative $\beta_1 \neq 1$ using 5\% significance level.
+%    \end{enumerate}
+ 
+\item {[10]} The whole dataset of $n=600$ observations is split into three parts. 
+Donald Trump estimated the regression $\hat y_i = \hb_0 + \hb_1 x_i + \hb_2 w_i$ on 
+these three parts separately and on the whole dataset. 
+
+He has obtained $\SSR_1 = 100$, $\SSR_2 = 200$, $\SSR_3 = 300$ correspondingly and for the whole dataset $\SSR = 650$ and $\SST = 800$. 
+
+\begin{enumerate}
+    \item {[4]} Test $H_0$: $\beta_1 = 0$ and $\beta_2 = 0$ on the whole dataset against $H_1$: $\beta_1 \neq 0$ or $\beta_2 \neq 0$.
+    \item {[6]} Test $H_0$ that the linear model is the same on the whole dataset against three different linear models. 
+\end{enumerate}
+
+You are free to use these 5\% critical values: $F_{1, 597} =3.9$,  $F_{2, 597}=3.0$, $F_{3, 597}=2.6$, $F_{4, 597}=2.4$, $F_{5, 597}=2.2$, $F_{6, 597}=2.1$,
+$F_{1, 591} =3.9$,  $F_{2, 591}=3.0$, $F_{3, 591}=2.6$, $F_{4, 591}=2.4$, $F_{5, 591}=2.2$, $F_{6, 591}=2.1$.
+
+    
+    \newpage
+    
+    \item {[10]} The true model is $y_i = \beta_0 + \beta_1 x_i + u_i$ with $\E(u \mid x) = m(x)$, $\Var(u \mid x) = \sigma^2 I$. 
+    Observations are independent.
+    Winnie-the-Pooh observes $y$, $x$ and a strange variable $z$ such that $\Cov(x_i, z_i) \neq 0$, but $\Cov(z_i, u_i) = 0$.
+
+    Consider regression A: $\hat x_i = \hat \gamma_0 + \hat \gamma_1 z_i$ and regression B: $\hat y_i = \hat \delta_0 + \hat \delta_1 z_i$.
+
+    \begin{enumerate}
+        \item {[3]} Find $\plim \hat\gamma_1$ in terms of $\Cov(x_i, z_i)$ and $\Var(z_i)$.
+        \item {[5]} Find $\plim \hat\delta_1$ in terms of $\beta_1$, $\Cov(x_i, z_i)$ and $\Var(z_i)$.
+        \item {[2]} Construct a consistent estimator of $\beta_1$ using $\hat\gamma_1$ and $\hat\delta_1$. 
+    \end{enumerate}
+
+
+    \item {[10]} Consider the following joint distribution of the regressor $x_i$ and random error $u_i$:
+    
+    \begin{tabular}{*{4}{c}}
+        \toprule
+        & $x_i=-1$ & $x_i=0$ & $x_i=1$ \\
+        \midrule
+        $u_i=-1$ & 0.2 & 0.2 & 0.1  \\
+        $u_i=1$ & 0.1 & 0.2 & 0.2  \\
+        \bottomrule
+        \end{tabular}
+        
+
+    \begin{enumerate}
+        \item {[4]} Find $\E(u_i \mid x_i)$, $\Var(u_i \mid x_i)$.
+        \item {[3]} Find $\E(u_i)$, $\Cov(x_i, u_i)$.
+        \item {[1]} Which Gauss~— Markov assumptions are violated?
+        \item {[2]} Is the OLS estimator $\hat \beta_1$ in the model $y_i = \beta_0 + \beta_1 x_i + u_i$ conditionally unbiased?
+    \end{enumerate}
+
+
+    \item {[10]} (from LSE past exams) 
+    SAT-test (Scholastic Assessment Test) is used for colledge admissions in the US.
+    Consider the following regression of \verb|sat| (SAT-test score):
+    \[
+    \widehat{\text{sat}}_i = \underset{(6.3)}{1028} 
+    + \underset{(3.8)}{19.3} \text{hsize}_i - \underset{(0.5)}{2.2} \text{hsize}_i^2 
+    - \underset{(4.3)}{45}\text{fem}_i
+    - \underset{(13)}{170}\text{black}_i
+    + \underset{(13)}{62}\text{fem}_i\text{black}_i
+    \]
+    Here \verb|fem| is a dummy variable equal to $1$ for females and $0$ for males 
+    and \verb|black| is a race dummy variable equal to $1$ for black and $0$ otherwise
+    and \verb|hsize| is the class size.  
+    Standard errors are supplied in brackets. 
+
+    \begin{enumerate}
+        \item {[2]} Why is it reasonable to include $\text{hsize}^2$?
+        \item {[2]} For which class size the SAT-score is maximal ceteris paribus?
+        \item {[2]} Let's fix \verb|hsize|. 
+        Estimate the SAT-score difference between  non-black females and non-black males.
+        Is this difference statistically significant?
+        \item {[2]} Let's fix \verb|hsize| once again. 
+        Estimate the SAT-score difference between  black females and non-black females.
+        Which information would you need to test statistical significance of this difference?
+        \item {[2]} Describe the problem that you will encounter during estimation 
+        if all females in your sample are black.
+    \end{enumerate}
+\end{enumerate}
+
+
+\end{document}
+
