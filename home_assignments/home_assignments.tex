@@ -569,6 +569,49 @@ Now simulate the experiment 5000 times.
 
 \end{enumerate}
 
+
+\section*{Home assignment 9}
+
+Deadline: 2024-12-15, 23:59.
+
+\begin{enumerate}
+    \item Consider the model $y_i = \beta_1 + \beta_x x_i + u_i$ where $\E(u_i \mid x) = 0$, but $\Var(u_i \mid x) = \sigma^2 \cdot x^2_i$.
+    We have a toy dataset $x = (1, 2, -1)$ and $y = (3, 8, 8)$.
+    
+    \begin{enumerate}
+        \item Find ordinary least squares estimates $\hb_{\text{ols}}$.
+        \item Find weighted least squares estimates $\hb_{\text{wls}}$ with minimal variance in this case. 
+        \item Find the true covariance matrix $\Var(\hb_{\text{ols}} \mid x)$.
+        \item Find the true covariance matrix $\Var(\hb_{\text{wls}} \mid x)$.
+        \item Find the hypothetical covariance matrix $\Var(\hb_{\text{ols}} \mid x, H_0)$ assuming homoskedasticity in $H_0$.
+        \end{enumerate}
+        
+
+    \item The variables $a$, $b$ and $c$ are standardized. 
+    The sample correlation of $a$ with $b$ and $c$ is zero. 
+    The sample correlation of $b$ and $c$ is $0.5$.
+
+    \begin{enumerate}
+        \item Write the correlation matrix $C$ of these variables and find the SVD of $C$. 
+        \item Find two matrices from the SVD of the matrix $X$ with columns $a$, $b$ and $c$.
+        \item Which proportion of the total variance is explained by the first component?
+        \item Which proportion of the total variance is explained by the first two components?
+        \item Express the first two components in terms of the original predictors, $a$, $b$ and $c$. 
+        \item We have estimated regression of some centered variable $y$ onto the first two components,
+        \[
+        \hat y_i = 0.9 p_{i1} - 0.3 p_{i2}.
+        \]
+        Provide an approximate reconstruction of the coefficients $\hb_a$, $\hb_b$, $\hb_c$ 
+        in the regression 
+        \[
+        \hat y_i = \hb_a a_i + \hb_b b_i + \hb_c c_i. 
+        \]
+    \end{enumerate}
+
+    \item there will be one more problem :)
+
+\end{enumerate}
+
 \end{document}
 
 
