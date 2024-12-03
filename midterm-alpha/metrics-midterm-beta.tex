@@ -1,0 +1,259 @@
+% arara: xelatex
+\documentclass[12pt]{article}
+
+% \usepackage{physics}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+
+\usepackage{tikzducks}
+
+\usepackage{tikz} % картинки в tikz
+\usetikzlibrary{shapes, arrows, positioning}
+\usepackage{microtype} % свешивание пунктуации
+
+\usepackage{array} % для столбцов фиксированной ширины
+
+\usepackage{indentfirst} % отступ в первом параграфе
+
+\usepackage{sectsty} % для центрирования названий частей
+\allsectionsfont{\centering}
+
+\usepackage{amsmath, amsfonts, amssymb} % куча стандартных математических плюшек
+
+\usepackage{comment}
+
+\usepackage[top=2cm, left=1.2cm, right=1.2cm, bottom=2cm]{geometry} % размер текста на странице
+
+\usepackage{lastpage} % чтобы узнать номер последней страницы
+
+\usepackage{enumitem} % дополнительные плюшки для списков
+%  например \begin{enumerate}[resume] позволяет продолжить нумерацию в новом списке
+\usepackage{caption}
+
+\usepackage{url} % to use \url{link to web}
+
+
+\newcommand{\smallduck}{\begin{tikzpicture}[scale=0.3]
+    \duck[
+        cape=black,
+        hat=black,
+        mask=black
+    ]
+    \end{tikzpicture}}
+
+\usepackage{fancyhdr} % весёлые колонтитулы
+\pagestyle{fancy}
+\lhead{Econometrics for pandas}
+\chead{}
+\rhead{Midterm exam-2}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\usepackage{tcolorbox} % рамочки!
+
+\usepackage{todonotes} % для вставки в документ заметок о том, что осталось сделать
+% \todo{Здесь надо коэффициенты исправить}
+% \missingfigure{Здесь будет Последний день Помпеи}
+% \listoftodos - печатает все поставленные \todo'шки
+
+
+% более красивые таблицы
+\usepackage{booktabs}
+% заповеди из докупентации:
+% 1. Не используйте вертикальные линни
+% 2. Не используйте двойные линии
+% 3. Единицы измерения - в шапку таблицы
+% 4. Не сокращайте .1 вместо 0.1
+% 5. Повторяющееся значение повторяйте, а не говорите "то же"
+
+
+\setcounter{MaxMatrixCols}{20}
+% by crazy default pmatrix supports only 10 cols :)
+
+
+\usepackage{fontspec}
+\usepackage{libertine}
+\usepackage{polyglossia}
+
+\setmainlanguage{russian}
+\setotherlanguages{english}
+
+% download "Linux Libertine" fonts:
+% http://www.linuxlibertine.org/index.php?id=91&L=1
+% \setmainfont{Linux Libertine O} % or Helvetica, Arial, Cambria
+% why do we need \newfontfamily:
+% http://tex.stackexchange.com/questions/91507/
+% \newfontfamily{\cyrillicfonttt}{Linux Libertine O}
+
+\AddEnumerateCounter{\asbuk}{\russian@alph}{щ} % для списков с русскими буквами
+% \setlist[enumerate, 2]{label=\asbuk*),ref=\asbuk*}
+
+%% эконометрические сокращения
+\DeclareMathOperator{\Cov}{\mathbb{C}ov}
+\DeclareMathOperator{\Corr}{\mathbb{C}orr}
+\DeclareMathOperator{\Var}{\mathbb{V}ar}
+\DeclareMathOperator{\col}{col}
+\DeclareMathOperator{\row}{row}
+
+\DeclareMathOperator{\rank}{rank}
+
+\let\P\relax
+\DeclareMathOperator{\P}{\mathbb{P}}
+
+\DeclareMathOperator{\E}{\mathbb{E}}
+% \DeclareMathOperator{\tr}{trace}
+\DeclareMathOperator{\card}{card}
+
+\DeclareMathOperator{\Convex}{Convex}
+\DeclareMathOperator{\plim}{plim}
+
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cF}{\mathcal{F}}
+
+
+\newcommand{\SST}{\text{SST}}
+\newcommand{\SSR}{\text{SS}^{\text{res}}}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\hb}{\hat{\beta}}
+\newcommand{\dPois}{\mathrm{Pois}}
+
+\usepackage{mathtools}
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+\DeclarePairedDelimiter{\scalp}{\langle}{\rangle}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+
+
+
+\begin{document}
+
+\begin{enumerate}
+    \item {[10]} Donald Trump estimates the simple regression $\hat y_i = \hb_0 + \hb_1 x_i$.
+    He has $300$ observations, $\sum x_i = 300$, $\sum y_i = 0$, $\norm{x}^2 = 30 000$, $\sum x_i y_i = 100$, $\norm{y} = 100$.
+
+   \begin{enumerate}
+        \item {[4]} Estimate coefficients $\hb_0$ and $\hb_1$.
+        \item {[4]} Calculate 95\% confidence interval for $\beta_1$.
+        \item {[2]} Test hypothesis that $\beta_1 = 1$ against alternative $\beta_1 \neq 1$ using 5\% significance level.
+    \end{enumerate}
+    
+
+    \item {[10]} Consider the model $y = X\beta + u$ where $\beta$ is non-random, $\E(u \mid X ) = 0$. 
+    The matrix $X$ of size $n\times k$ has $\rank X = k$ and $\Var(u \mid X) = \sigma^2 I$.
+    Let $\hb$ be the standard OLS estimator of $\beta$.
+
+    \begin{enumerate}
+        \item {[2]} Find $\E(\hat y \mid X)$.
+        \item {[4]} Find $\Var(\hat y \mid X)$ and $\Var(\hat u \mid X)$.
+        \item {[4]} Prove that $H_{ii} \in [0;1]$ if $H = X(X^TX)^{-1}X^T$.
+    \end{enumerate}
+
+
+% под замену
+\item {[10]} The whole dataset of $n=603$ observations is split into two parts: $600$ observations and $3$ separated observations.
+Donald Trump estimated two regressions.
+
+Regression $\hat y_i = \hb_0 + \hb_1 x_i + \hb_2 w_i$ on the whole dataset with $\SST = 800$ and $\SSR = 650$.
+The same regression on the first part of $600$ observations with $\SSR_1 = 600$.
+
+\begin{enumerate}
+    \item {[4]} Test $H_0$: $\beta_1 = 0$ and $\beta_2 = 0$ on the whole dataset against $H_1$: $\beta_1 \neq 0$ or $\beta_2 \neq 0$.
+    \item {[6]} Test $H_0$ that the separated observations are not outliers against an alternative that the linear model is valid only for the first $600$ observations.  
+\end{enumerate}
+
+You are free to use these 5\% critical values: $F_{1, 597} =3.9$,  $F_{2, 597}=3.0$, $F_{3, 597}=2.6$, $F_{4, 597}=2.4$, $F_{5, 597}=2.2$, $F_{6, 597}=2.1$,
+$F_{1, 591} =3.9$,  $F_{2, 591}=3.0$, $F_{3, 591}=2.6$, $F_{4, 591}=2.4$, $F_{5, 591}=2.2$, $F_{6, 591}=2.1$, $F_{2,600} = 3.0$, $F_{3, 600} = 2.6$.
+
+    
+\newpage
+    \item {[10]} The true model is $y_i = \beta_0 + \beta_1 x_i + u_i$ with $\Var(u \mid x) = \sigma^2 I$. 
+    Observations are independent.
+    Winnie-the-Pooh observes $y$ but does not observe $x$.
+    Instead of $x$ he observes $a$ and $b$, $a_i = x_i + v^a_i$, $b_i = x_i + v^b_i$. 
+    Random variables $u_i$, $v^a_i$ and $v^b_i$ are independent, $\E(u \mid x) = \E(v^b \mid x) = \E(v^a \mid x) = 0$.
+
+
+    Consider regression A: $\hat a_i = \hat \gamma_0 + \hat \gamma_1 b_i$ and regression B: $\hat y_i = \hat \delta_0 + \hat \delta_1 b_i$.
+
+    \begin{enumerate}
+        \item {[3]} Find $\plim \hat\gamma_1$ in terms of $\Var(v^b_i)$ and $\Var(x_i)$.
+        \item {[5]} Find $\plim \hat\delta_1$ in terms of $\beta_1$, $\Var(v^b_i)$ and $\Var(x_i)$.
+        \item {[2]} Construct a consistent estimator of $\beta_1$ using $\hat\gamma_1$ and $\hat\delta_1$. 
+    \end{enumerate}
+
+
+    \item {[10]} Observations are independent. 
+    The vector of regressor and random error $(x_i, u_i)$ is uniformly distributed inside the parallelogram $ABCD$,
+    $A = (-3, 0)$, $B = (3, 2)$, $C = (3, 0)$, $D = (-3, -2)$.
+        
+    \begin{enumerate}
+        \item {[4]} Find $\E(u_i \mid x_i)$, $\Var(u_i \mid x_i)$.
+        \item {[3]} Find $\E(u_i)$, $\Cov(x_i, u_i)$.
+        \item {[1]} Which Gauss~— Markov assumptions are violated?
+        \item {[2]} Is the OLS estimator $\hat \beta_1$ in the model $y_i = \beta_0 + \beta_1 x_i + u_i$ consistent?
+    \end{enumerate}
+
+
+
+    \item {[10]} (from LSE past exams) 
+    
+    Let's consider how workplace smoking ban affect the incidence of smoking. 
+    We use the data on $n=10000$ US indoor workers from 1991 to 1993.
+    The data is taken from the article 'Do workplace Smoking Bans Reduce Smoking' by Evans et al. 
+    
+    The smoker is a dummy variable (1 if a worker smokes and 0 if no).
+    The smkban is a dummy variable (1 if there is a ban on smoking, 0 otherwise).
+    
+    The first regression is 
+    \[
+    \widehat{\text{smoker}}_i = \underset{0.007}{0.3} - \underset{0.009}{0.078}\text{smkban}_i, R^2 = 0.0078, \SSR = 1820.
+    \]
+    Standard errors are in parentheses. 
+    \begin{enumerate}
+        \item {[2]} Interpret the parameter estimates of the coefficient on smkban.
+        \item {[2]} Provide the approximate 95\% confidence interval for the coefficient on smkban.
+        \item {[1]} Test the hypothesis that $\beta_{\text{smkban}} = 0$.
+    \end{enumerate}
+
+    The second regression is 
+    \begin{multline*}
+        \widehat{\text{smoker}}_i = \underset{(0.02)}{0.2} - \underset{(0.045)}{0.009}\text{smkban}_i + 
+        -\underset{(0.009)}{0.033}\text{fem}_i - \underset{(0.0003)}{0.001}\text{age}_i - 
+        - \underset{(0.016)}{0.027}\text{black}_i - \underset{(0.014)}{0.1}\text{hisp}_i + \\
+        +\underset{(0.02)}{0.3}\text{e}_{1i} + \underset{(0.012)}{0.2}\text{e}_{3i} + 
+        \underset{(0.012)}{0.16}\text{e}_{3i} + \underset{(0.012)}{0.042}\text{e}_{4i},
+        R^2 = 0.0526, \SSR = 1736.
+    \end{multline*}
+
+
+    Here $e_{1}$ is a dummy for highschool dropout, $e_{2}$ — for highschool graduate, $e_3$ — for some college, 
+    $e_4$ — for college graduate, $e_5$ — for master degree or above. 
+
+    \begin{enumerate}[resume]
+        \item {[2]} Compare the coefficient on smkban in the long and short models. 
+        Explain why the estimates differ. 
+        \item {[3]} Interpret the estimate of the coefficient on $e_2$. 
+        Explain how would you obtain its $p$-value and what information $p$-value provides. 
+    \end{enumerate}
+
+
+\end{enumerate}
+
+
+\end{document}
+
