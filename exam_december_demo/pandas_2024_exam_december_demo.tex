@@ -1,0 +1,257 @@
+% arara: xelatex
+\documentclass[12pt]{article}
+
+% \usepackage{physics}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+
+\usepackage{tikzducks}
+
+\usepackage{tikz} % картинки в tikz
+\usepackage{microtype} % свешивание пунктуации
+
+\usepackage{array} % для столбцов фиксированной ширины
+
+\usepackage{indentfirst} % отступ в первом параграфе
+
+\usepackage{sectsty} % для центрирования названий частей
+\allsectionsfont{\centering}
+
+\usepackage{amsmath, amsfonts, amssymb} % куча стандартных математических плюшек
+
+\usepackage{mathtools}
+\usepackage{comment}
+
+\usepackage[top=2cm, left=1.2cm, right=1.2cm, bottom=2cm]{geometry} % размер текста на странице
+
+\usepackage{lastpage} % чтобы узнать номер последней страницы
+
+\usepackage{enumitem} % дополнительные плюшки для списков
+%  например \begin{enumerate}[resume] позволяет продолжить нумерацию в новом списке
+\usepackage{caption}
+
+\usepackage{url} % to use \url{link to web}
+
+
+\newcommand{\smallduck}{\begin{tikzpicture}[scale=0.3]
+    \duck[
+        cape=black,
+        hat=black,
+        mask=black
+    ]
+    \end{tikzpicture}}
+
+\usepackage{fancyhdr} % весёлые колонтитулы
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{Econometrics demo, December 2024}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\usepackage{tcolorbox} % рамочки!
+
+\usepackage{todonotes} % для вставки в документ заметок о том, что осталось сделать
+% \todo{Здесь надо коэффициенты исправить}
+% \missingfigure{Здесь будет Последний день Помпеи}
+% \listoftodos - печатает все поставленные \todo'шки
+
+
+% более красивые таблицы
+\usepackage{booktabs}
+% заповеди из докупентации:
+% 1. Не используйте вертикальные линни
+% 2. Не используйте двойные линии
+% 3. Единицы измерения - в шапку таблицы
+% 4. Не сокращайте .1 вместо 0.1
+% 5. Повторяющееся значение повторяйте, а не говорите "то же"
+
+
+\setcounter{MaxMatrixCols}{20}
+% by crazy default pmatrix supports only 10 cols :)
+
+
+\usepackage{fontspec}
+\usepackage{libertine}
+\usepackage{polyglossia}
+
+\setmainlanguage{english}
+\setotherlanguages{english}
+
+% download "Linux Libertine" fonts:
+% http://www.linuxlibertine.org/index.php?id=91&L=1
+% \setmainfont{Linux Libertine O} % or Helvetica, Arial, Cambria
+% why do we need \newfontfamily:
+% http://tex.stackexchange.com/questions/91507/
+% \newfontfamily{\cyrillicfonttt}{Linux Libertine O}
+
+\AddEnumerateCounter{\asbuk}{\russian@alph}{щ} % для списков с русскими буквами
+% \setlist[enumerate, 2]{label=\asbuk*),ref=\asbuk*}
+
+%% эконометрические сокращения
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\Cov}{\mathbb{C}ov}
+\DeclareMathOperator{\Corr}{\mathbb{C}orr}
+\DeclareMathOperator{\Var}{\mathbb{V}ar}
+\DeclareMathOperator{\pCorr}{\mathrm{pCorr}}
+\DeclareMathOperator{\col}{col}
+\DeclareMathOperator{\row}{row}
+\DeclareMathOperator{\hCov}{\widehat{Cov}}
+\DeclareMathOperator{\hVar}{\widehat{Var}}
+\DeclareMathOperator{\loss}{loss}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\plim}{plim}
+
+
+\let\P\relax
+\DeclareMathOperator{\P}{\mathbb{P}}
+
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+
+\let\H\relax
+\DeclareMathOperator{\H}{\mathbb{H}}
+
+
+\DeclareMathOperator{\E}{\mathbb{E}}
+% \DeclareMathOperator{\tr}{trace}
+\DeclareMathOperator{\card}{card}
+
+\DeclareMathOperator{\Convex}{Convex}
+
+\newcommand{\SSR}{SS^{\text{res}}}
+\newcommand{\SSE}{SS^{\text{expl}}}
+\newcommand{\SST}{SST}
+\newcommand{\hb}{\hat\beta}
+\newcommand{\hy}{\hat y}
+\newcommand \cN{\mathcal{N}}
+\newcommand \dN{\mathcal{N}}
+\newcommand \dBin{\mathrm{Bin}}
+
+
+\newcommand \RR{\mathbb{R}}
+\newcommand \NN{\mathbb{N}}
+
+
+
+
+
+\begin{document}
+
+\section*{General notes}
+
+Exam will contain 6 problems. 
+All the problems have equal weights. 
+Midterm duration is 120 minutes. 
+Closed book, one A4 cheatsheet is allowed.
+
+\section*{Demo variant «Santa»}
+\begin{enumerate}
+    \item In a model $y_i = \beta_0 + \beta_1 x_i + u_i$ all Gauss~— Markov assumptions are satisfied except $\Var(u_i \mid x) = \sigma^2 x^4_i$.
+    
+    \begin{enumerate}
+        \item Derive the most efficient unbiased estimator for $\beta$.
+        \item Derive unbiased and consisent estimator for $\sigma^2$.
+    \end{enumerate}
+
+
+    \item Consider the simple regression with $L^2$-penalty with three observations, $y = (1, 3, 5)$, $x = (1, 2, 2)$.
+    The loss function to be minimized is given by 
+    \[
+    \loss(\hb_0, \hb_1) = \sum_i (y_i - \hat y_i)^2 + \lambda \cdot \hb_1^2, \quad \hat y_i = \hb_0 + \hb_1 x_i.
+    \] 
+    
+    \begin{enumerate}
+        \item Find estimator $\hb_1$ for any $\lambda \geq 0$.
+        \item Find $\E(\hb_1 \mid x)$ and $\Var(\hb_1 \mid x)$.
+        \item Find the mean squared error $MSE(\hb_1)$.
+%        \item Can you find a $\lambda$ such that $MSE(\hb_1) < MSE(\hb_1^{\text{ols}})$, where $\hb_1^{\text{ols}}$ is a standard OLS estimator?
+    \end{enumerate}
+
+
+
+    \item The random variables $y_1$, \dots, $y_n$ are independent and identically distributed on $[a; 1]$,
+    where $a \in (0;1)$ is an unknown parameter. 
+    Consider a bootstrap sample $y_1^*$, \dots, $y_n^*$.
+
+    \begin{enumerate}
+        \item Find the probabilities $\P(\min y^* > \min y)$, $\P(\min y^* > a)$.
+        \item Describe how to construct naive bootstrap confidence interval for $a$.
+        \item Find the real coverege probability of a nominal 95\% naive bootstrap confidence interval for $a$. 
+    \end{enumerate}
+
+    
+    \item All regressors in $X$ matrix are standardized. 
+    There are $3$ regressors and $53940$ observations. 
+    You partially know the singular value decomposition of $X$:
+    \[
+    X = UDV^T, \diag(D) = (1.301\cdot 10^6, 1.022 \cdot 10^4, 42.58),
+    V = \begin{pmatrix}
+        0.000156 & 0.005953 & -0.999982 \\ 
+        0.007737 & 0.999952 & 0.005954 \\ 
+        0.999970 & -0.007737 & 0.000109 \\ 
+        \end{pmatrix}.
+    \]
+    \begin{enumerate}
+        \item Express the first two principal components as the functions of original predictors.
+        \item Find the sample variance of each principal component.
+        \item How much variance does the first principal component explain?
+        \item How much variance do the first two principal components explain?
+    \end{enumerate}
+
+    \item Consider the model $y_i = \beta_0 + \beta_a a_i + \beta_b b_i + u_i$.
+    Let $X$ be the matrix of all regressors including constant, $n =  53940$,
+    \[
+    (X^TX)^{-1} = \begin{bmatrix}
+        0.034465493 & -0.000018274 & -0.000557615 \\ 
+        -0.000018274 & 0.000082578 & -0.000000771 \\ 
+        -0.000557615 & -0.000000771 & 0.000009040 \\ 
+         \end{bmatrix}    
+    \]
+    \begin{enumerate}
+        \item Find the coefficient estimates in the regression $\hat{b}_i = \hat\gamma_0 + \hat\gamma_1 a_i$, 
+        the corresponding $R^2_b$ and $VIF_b$.
+        \item Find the variance of $\hb_b$ in the original model assuming $\Var(u_i \mid X) = \sigma^2$.
+    \end{enumerate}
+
+
+    \item Students choose the stochastic calculus book in the library. 
+    There are two types of the book: the green one and the red one, 
+    the variable $g_i$ is an indicator with $g_i = 1$ when the $i$-th student wants the green book. 
+    There are too many copies of the red book and too few copies of the green book. 
+    So the variable $a_i$ is an indicator of the availability: $a_i = 1$ if the green book 
+    is available when the $i$-th student arrives and $a_i = 0$ otherwise.
+    The student will take the book he/she likes if it is available and the red book otherwise. 
+
+    The stochastic calculus exam result $y_i$ depends on the book and unobserved student characteristics $u_i$,
+    \[
+    y_i = \beta_0 + \beta_1 g_i a_i + u_i.
+    \]
+    Here $\Cov(g_i, u_i) \neq 0$ but $\Cov(a_i, u_i) = 0$.
+
+    \begin{enumerate}
+        \item Find $\plim \hb_1^{\text{ols}}$ from regression $\hat y_i = \hb_0 + \hb_1 g_i a_i$. 
+        Is it consistent?
+        \item Find $\plim \hb_1^{\text{iv}}$ for the same regression with $a_i$ as instrument. 
+    \end{enumerate}
+
+
+\end{enumerate}
+
+
+
+
+\end{document}
+
