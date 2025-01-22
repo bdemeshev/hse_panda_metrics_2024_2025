@@ -5,6 +5,7 @@
 
 % \usepackage{physics}
 
+\usepackage{verse}
 
 \usepackage{tikzducks}
 
@@ -611,6 +612,75 @@ Deadline: 2024-12-15, 23:59.
     \item Hakuna matata :)
 
 \end{enumerate}
+
+
+
+\newpage
+\lhead{Deadline: 2025-02-05, 23:59}
+\section*{Home assignment 10}
+
+\begin{verse}
+    \begin{flushright}
+        Где б ты ни был, в саклях иль в ярангах, \\
+        Проверяй везде условья ранга!
+        \end{flushright}
+\end{verse}
+
+\begin{enumerate}
+
+\item Let's consider the following system:
+\[
+\begin{cases} 
+    P_t + \beta_{12} W_t + \gamma_{11} Q_t + \gamma_{13} P_{t-1} = \varepsilon_{1t}, \\ 
+    \beta_{21} P_t + W_t + \beta_{23} N_t + \gamma_{22} S_t + \gamma_{24} W_{t-1} = \varepsilon_{2t}, \\ 
+    \beta_{32} W_t + N_t + \gamma_{32} S_t + \gamma_{33} P_{t-1} + \gamma_{34} W_{t-1} = \varepsilon_{3t}.
+\end{cases}
+\]
+The endogenous variables $P_t$, $W_t$ and $N_t$ represent the price index, wages, and union dues, respectively.
+The exogenous variables $Q_t$ and $S_t$ represent labor productivity and the number of strikes. 
+\begin{enumerate}
+    \item For each equation check the order and rank conditions in the case $\gamma_{11} = 0$.
+    \item For each equation check order and rank conditions in the case $\beta_{21} = \gamma_{22} = 0$.
+    % \item Check order and rank conditions in the case $\gamma_{33} = 0$.
+\end{enumerate}
+
+% \item Consider the system of simulteneous equations
+% \[
+% \begin{cases}
+% a_t = \gamma b_t + \beta_1 x_t + \beta_2 v_t + \beta_3 w_t + u_{1t}, \\
+% b_t = \gamma a_t  + \delta_1 x_t + \delta_2 v_t  + u_{2t}.
+% \end{cases}
+% \]
+% We assume that observations are independent, $a_t$ and $b_t$ are endogenous and $x_t$, $v_t$ and $w_t$ are exogeneous.
+
+% \begin{enumerate}
+%     \item Check the order condition for each equation. 
+%     \item Check the rank condition for each equation.
+%     \item What exactly will happen if naive John will try to use 2SLS method for the first equation?
+% \end{enumerate}
+
+\item The observations are independent and satisfy the system 
+\[
+\begin{cases}
+    q_t = \alpha p_t + u_{1t}, \\
+    q_t = \beta p_t + u_{2t}.
+\end{cases}
+\]
+\begin{enumerate}
+    \item Find the probability limit of the OLS estimator $\hat \theta$ in the regression $\hat q_t = \hat\theta p_t$.
+\end{enumerate}
+Assume now that your observe one more variable $r_t$ that is correlated with $u_{1t}$ but not correlated with $u_{2t}$.
+\begin{enumerate}[resume]
+    \item Is it possible to obtain consistent estimator of $\alpha$? Of $\beta$?
+    \item Where it is possible explain how would you obtain a consistent estimator.
+\end{enumerate}
+
+\end{enumerate}
+
+
+
+
+
 
 \end{document}
 
