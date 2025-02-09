@@ -31,7 +31,9 @@
 %  например \begin{enumerate}[resume] позволяет продолжить нумерацию в новом списке
 \usepackage{caption}
 
-\usepackage{url} % to use \url{link to web}
+\usepackage{hyperref} % loads url
+% \usepackage{url} % to use \url{link to web}
+\urlstyle{same}
 
 
 \newcommand{\smallduck}{\begin{tikzpicture}[scale=0.3]
@@ -680,16 +682,54 @@ Assume now that your observe one more variable $r_t$ that is correlated with $u_
 
 \section*{Home assignment 11}
 
-Deadline: 2025-02-20, 23:59.
+Made in Moscow and Belgrad with love for pandas $\heartsuit$
+
+Deadline: 2025-02-23, 23:59.
 
 \begin{enumerate}
 \item Let $x_i$ be the number coffee cups drinken before econometrics exam by $i$-th student. 
-The dummy variable $d_i$ is equal to one for those students who praise hedgehogs and $y_i = 1$ for those who pass the econometrics exam. 
+The dummy variable $d_i$ is equal to one for those students who praise hedgehogs and dependen variable $y_i$ is equal to one for those who pass the econometrics exam. 
 
-Based on $n=300$ observation the 
+Based on $n=1000$ observation Nikola Tesla estimated the logistic model:
+\[
+\hat\P(y_i = 1 \mid x_i, d_i) = \Lambda(0.2 + 0.1 x_i + 0.15 d_i).
+\]
+
+Alice has drinken $3$ cups of coffee and does not praise hedgehogs.
+
+\begin{enumerate}
+    \item Estimate the probability and odds of passing an exam for Alice.
+    \item Estimate the marginal effect of the number of coffee cups on probability for Alice.
+    \item Estimate the partial effect of increasing the number of coffee cups by one for Alice. 
+    Compare it with the marginal effect.
+    \item Estimate the odds ratio (praising hedgejogs to non-praising hedgehogs) for Alice. 
+\end{enumerate}
+
+\item You have a toy dataset:
+
+\begin{tabular}{*{3}{c}}
+    \toprule
+    value of $y_i$ & value of $x_i$ & number of observations \\
+    \midrule
+    $y_i = 0$ & $x_i = 3$ &  200  \\
+    $y_i = 0$ & $x_i = 5$ &  300  \\
+    $y_i = 1$ & $x_i = 3$ &  400  \\
+    $y_i = 1$ & $x_i = 5$ &  500  \\
+    \bottomrule
+\end{tabular}
+    
+
+Estimate the logistic model $\P(y_i = 1 \mid x_i) = \Lambda(\beta_1 + \beta_2 x_i)$ using maximum likelihood by bare hands.
 
 
-\item 
+\item Solve the practice problem: 
+
+\url{https://colab.research.google.com/drive/1_WCf2Emz3qJwqElnBKF6kmnTzJ7-OJ1P?usp=sharing}
+
+Use the preprocessed dataset: 
+
+\url{https://github.com/bdemeshev/hse_panda_metrics_2024_2025/blob/main/data}
+
 \end{enumerate}
 
 
