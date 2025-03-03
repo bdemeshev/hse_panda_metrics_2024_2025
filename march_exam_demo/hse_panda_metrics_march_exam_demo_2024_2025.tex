@@ -189,11 +189,11 @@ Closed book, one A4 cheatsheet is allowed.
     \item The dataset contains $1000$ observations. 
     We have estimated logistic regression A:
     \[
-    \hat\P(y_i = 1 \mid a_i, b_i, c_i, d_i) = \Lambda(0.3 + 0.1 a_i + 0.2 b_i - 0.3 c_i + 0.2 d_i), \quad \ln L = -650,
+    \hat\P(y_i = 1 \mid a_i, b_i, c_i, d_i) = \Lambda(0.3 + 0.1 a_i + 0.2 b_i - 0.3 c_i + 0.2 d_i), \quad \ln L = -330,
     \]
     and logistic regression B:
     \[
-    \hat\P(y_i = 1 \mid a_i, b_i, c_i, d_i) = \Lambda(0.1 + 0.4 a_i), \quad \ln L = -655.
+    \hat\P(y_i = 1 \mid a_i, b_i, c_i, d_i) = \Lambda(0.1 + 0.4 a_i), \quad \ln L = -335.
     \]
     Here $\ln L$ denotes the maximal value of the log-likelihood function. 
     \begin{enumerate}
@@ -201,11 +201,34 @@ Closed book, one A4 cheatsheet is allowed.
         Use 5\% significance level.
         Clearly state $H_0$, $H_a$, the distribution of the test statistic under $H_0$ and critical region.
         \item Compare these models using corrected Akaike information criterion. 
+        \item Calculate $\ln L$ for the trivial model $\hat\P(y_i = 1 \mid a_i, b_i, c_i, d_i) = \Lambda(\hb_0)$ given that $y_i = 1$ in $30\%$ of the observations.
     \end{enumerate}
 
 
-    \item 
-    \item 
+    \item The dataset contains $1000$ observations. 
+    Winnie-the-Pooh has estimated logistic model for the probability that honey is good ($h_i = 1$).
+    Predictor $x_i$ is the height of the tree and $b_i = 1$ for good bees and $b_i = 0$ for bad bees.
+    \[
+    \hat \P(h_i = 1 \mid x_i, b_i ) = \Lambda(0.2 + 0.1 x_i + 0.2 b_i).
+    \]
+    \begin{enumerate}
+        \item For which height of the tree the marginal effect $\partial \hat P/\partial x$ is maximal given that bees are good?
+        \item Draw the region of the plane where the predicted probability is from $0.2$ to $0.4$.
+        \item For which height of the tree the partial effect of bees type (good bees minus bad bees) is maximal?
+    \end{enumerate}
+
+    \item Consider the simultaneous equation model with endogeneous variables $v_i$ and $w_i$.
+    \[
+    \begin{cases}
+        v_i = \alpha_1 + \alpha_2 x_i + \alpha_3 w_i + \alpha_4 a_i + \alpha_5 b_i + u_{1i} \\
+        w_i = \beta_1 + \beta_2 v_i + \beta_3 b_i + u_{2i}.
+    \end{cases}
+    \]
+
+    \begin{enumerate}
+        \item Check the order identification condition for each equation. 
+        \item Check the rank identification condition for each equation. 
+    \end{enumerate}
 
     \item Something on logit model from LSE external exam. 
 \end{enumerate}
