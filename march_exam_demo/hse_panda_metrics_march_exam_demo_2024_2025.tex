@@ -186,7 +186,24 @@ Closed book, one A4 cheatsheet is allowed.
     
         \item Discuss the limitations of using the delta method in this context.
     \end{enumerate}
-    \item 
+    \item The dataset contains $1000$ observations. 
+    We have estimated logistic regression A:
+    \[
+    \hat\P(y_i = 1 \mid a_i, b_i, c_i, d_i) = \Lambda(0.3 + 0.1 a_i + 0.2 b_i - 0.3 c_i + 0.2 d_i), \quad \ln L = -650,
+    \]
+    and logistic regression B:
+    \[
+    \hat\P(y_i = 1 \mid a_i, b_i, c_i, d_i) = \Lambda(0.1 + 0.4 a_i), \quad \ln L = -655.
+    \]
+    Here $\ln L$ denotes the maximal value of the log-likelihood function. 
+    \begin{enumerate}
+        \item Compare these two nested models using $LR$-test. 
+        Use 5\% significance level.
+        Clearly state $H_0$, $H_a$, the distribution of the test statistic under $H_0$ and critical region.
+        \item Compare these models using corrected Akaike information criterion. 
+    \end{enumerate}
+
+
     \item 
     \item 
 
