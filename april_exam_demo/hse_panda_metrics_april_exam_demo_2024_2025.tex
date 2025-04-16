@@ -1,0 +1,267 @@
+% arara: xelatex
+\documentclass[12pt]{article}
+
+% \usepackage{physics}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+
+\usepackage{tikzducks}
+
+\usepackage{tikz} % картинки в tikz
+\usepackage{microtype} % свешивание пунктуации
+
+\usepackage{array} % для столбцов фиксированной ширины
+
+\usepackage{indentfirst} % отступ в первом параграфе
+
+\usepackage{sectsty} % для центрирования названий частей
+\allsectionsfont{\centering}
+
+\usepackage{amsmath, amsfonts, amssymb} % куча стандартных математических плюшек
+
+\usepackage{mathtools}
+\usepackage{comment}
+
+\usepackage[top=2cm, left=1.2cm, right=1.2cm, bottom=2cm]{geometry} % размер текста на странице
+
+\usepackage{lastpage} % чтобы узнать номер последней страницы
+
+\usepackage{enumitem} % дополнительные плюшки для списков
+%  например \begin{enumerate}[resume] позволяет продолжить нумерацию в новом списке
+\usepackage{caption}
+
+\usepackage{url} % to use \url{link to web}
+
+
+\newcommand{\smallduck}{\begin{tikzpicture}[scale=0.3]
+    \duck[
+        cape=black,
+        hat=black,
+        mask=black
+    ]
+    \end{tikzpicture}}
+
+\usepackage{fancyhdr} % весёлые колонтитулы
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{Econometrics midterm demo, April 2025}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\usepackage{tcolorbox} % рамочки!
+
+\usepackage{todonotes} % для вставки в документ заметок о том, что осталось сделать
+% \todo{Здесь надо коэффициенты исправить}
+% \missingfigure{Здесь будет Последний день Помпеи}
+% \listoftodos - печатает все поставленные \todo'шки
+
+
+% более красивые таблицы
+\usepackage{booktabs}
+% заповеди из докупентации:
+% 1. Не используйте вертикальные линни
+% 2. Не используйте двойные линии
+% 3. Единицы измерения - в шапку таблицы
+% 4. Не сокращайте .1 вместо 0.1
+% 5. Повторяющееся значение повторяйте, а не говорите "то же"
+
+
+\setcounter{MaxMatrixCols}{20}
+% by crazy default pmatrix supports only 10 cols :)
+
+
+\usepackage{fontspec}
+\usepackage{libertine}
+\usepackage{polyglossia}
+
+\setmainlanguage{english}
+\setotherlanguages{english}
+
+% download "Linux Libertine" fonts:
+% http://www.linuxlibertine.org/index.php?id=91&L=1
+% \setmainfont{Linux Libertine O} % or Helvetica, Arial, Cambria
+% why do we need \newfontfamily:
+% http://tex.stackexchange.com/questions/91507/
+% \newfontfamily{\cyrillicfonttt}{Linux Libertine O}
+
+\AddEnumerateCounter{\asbuk}{\russian@alph}{щ} % для списков с русскими буквами
+% \setlist[enumerate, 2]{label=\asbuk*),ref=\asbuk*}
+
+%% эконометрические сокращения
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\Cov}{\mathbb{C}ov}
+\DeclareMathOperator{\Corr}{\mathbb{C}orr}
+\DeclareMathOperator{\Var}{\mathbb{V}ar}
+\DeclareMathOperator{\pCorr}{\mathrm{pCorr}}
+\DeclareMathOperator{\col}{col}
+\DeclareMathOperator{\row}{row}
+\DeclareMathOperator{\hCov}{\widehat{Cov}}
+\DeclareMathOperator{\hVar}{\widehat{Var}}
+
+
+\let\P\relax
+\DeclareMathOperator{\P}{\mathbb{P}}
+
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+
+\let\H\relax
+\DeclareMathOperator{\H}{\mathbb{H}}
+
+
+\DeclareMathOperator{\E}{\mathbb{E}}
+% \DeclareMathOperator{\tr}{trace}
+\DeclareMathOperator{\card}{card}
+
+\DeclareMathOperator{\Convex}{Convex}
+
+\newcommand{\SSR}{SS^{\text{res}}}
+\newcommand{\SSE}{SS^{\text{expl}}}
+\newcommand{\SST}{SST}
+\newcommand{\hb}{\hat\beta}
+\newcommand{\hy}{\hat y}
+\newcommand \cN{\mathcal{N}}
+\newcommand \dN{\mathcal{N}}
+\newcommand \dBin{\mathrm{Bin}}
+
+\newcommand{\const}{\text{const}}
+
+\newcommand \RR{\mathbb{R}}
+\newcommand \NN{\mathbb{N}}
+
+
+
+
+
+\begin{document}
+
+\section*{General notes}
+
+Exam will contain 6 problems. 
+All the problems have equal weights. 
+Exam duration is 120 minutes. 
+Closed book, one A4 cheatsheet and simple calculator are allowed.
+
+\section*{Demo variant «Infallibilitas»}
+\begin{enumerate}
+    \item The buses arrive at the bus stop according to the Poisson process. 
+    That means actually that my waiting times $x_t$ for the bus every day are independent and exponentially distributed with unknown rate $\lambda$.
+    Each day I arrive at the bus stop and I wait for no more than $10$ minutes. 
+    If there is no bus during $10$ minutes I leave the stop and go by foot. 
+
+    Here are my timings at the bus stop: $y = (5, 10, 6, 10, 7)$.
+
+    \begin{enumerate}
+        \item Estimate unknown $\lambda$ using maximum likelihood. 
+        \item Estimate the probability that I go by foot by maximum likelihood. 
+    \end{enumerate}
+    
+    \item Pandas receive job proposal with wage $y_i^* = x_i^T \beta + u_i$, where $x_i^T$ are characteristics of a panda, 
+    $\beta$ — unknown parameters and $u_i$ is normally distributed $u_i \sim \cN(0; \sigma^2)$.
+
+    Pandas never agree to work for less than $2\cdot 10^5$ roubles per month. 
+    If the proposed wage is less than acceptable pandas prefer to attend econometrics classes. 
+
+    \begin{enumerate}
+        \item What is the probability that a panda will accept a job offer?
+        \item Calculate the expected wage of  panda that has accepted a job offer. 
+    \end{enumerate}
+
+    Your answer may contain  $x_i$, $\beta$, $\sigma^2$, standard normal density or cumulative distribution function.
+    
+
+    \item Classify the processes $x_t$ and $y_t$ as stationary, trend stationary, difference stationary, integrated of order $d$.
+    Here $(u_t)$ is a white noise independent of $(x_s)$ and $(y_s)$ for $s < t$.
+    \begin{enumerate}
+        \item $x_t = t^2 + 6t + u_t + u_{2025}$; 
+        \item $y_t$ is described by the system
+        \[
+        \begin{cases}
+            y_t = \ell_{t-1} + b_{t-1} + u_t \\
+            b_t = b_{t-1} + 0.1 u_t \\
+            \ell_t = \ell_{t-1} + b_{t-1} + 0.4 u_t \\
+            b_0 = \const, \ell_0 = \const.
+        \end{cases}
+        \]
+    \end{enumerate}
+
+
+    \item Consider the system
+    \[
+    \begin{cases}
+        (x_t) \sim I(1), (y_t) \sim I(1) \\
+        y_t = 2 + 0.1 y_{t-1} + 0.2 x_t - 0.1 x_{t-1} + u_t.
+    \end{cases}
+    \]
+    Here $(u_t)$ is a white noise independent of $(x_s)$ and $(y_s)$ for $s < t$.
+    
+    {[10]} Find the cointegration equation between $x_t$ and $y_t$.
+
+    \item Consider the following equation 
+    \[
+    \begin{pmatrix}
+        x_t \\
+        y_t 
+    \end{pmatrix} =
+    \begin{pmatrix}
+        1 \\
+        -2
+    \end{pmatrix} + 
+    \begin{pmatrix}
+        0.6 & 0.1 \\
+        0.1 & 0.6 \\
+    \end{pmatrix}
+    \begin{pmatrix}
+        x_{t-1} \\
+        y_{t-1}
+    \end{pmatrix} +
+    \begin{pmatrix}
+        v_t \\
+        w_t
+    \end{pmatrix}.
+    \]
+    Here $u_t = (v_t, w_t)$ is a two-dimensional white noise with $\E(u_t)=0$ and $\Var(u_t) = \begin{pmatrix}
+        1 & 0.2 \\
+        0.2 & 1 \\
+    \end{pmatrix}$.
+
+    \begin{enumerate}
+        \item Does this equation has a stationary solution that is vector moving average with respect to $(u_t)$?
+        \item Find $\E((x_t, y_t))$ and $\Var((x_t, y_t))$ for the stationary solution.
+    \end{enumerate}
+    
+    \item Something from LSE external exam;
+\end{enumerate}
+
+\end{document}
+\section*{Demo variant «Sailor Moon»}
+\begin{enumerate}
+    \item 
+    \item 
+    \item 
+    \item 
+    \item 
+
+    \item Something on logit model from LSE external exam. 
+
+\end{enumerate}
+
+
+
+
+
+\end{document}
+

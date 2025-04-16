@@ -1,0 +1,264 @@
+% arara: xelatex
+\documentclass[12pt]{article}
+
+% \usepackage{physics}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+
+\usepackage{tikzducks}
+
+\usepackage{tikz} % картинки в tikz
+\usepackage{microtype} % свешивание пунктуации
+
+\usepackage{array} % для столбцов фиксированной ширины
+
+\usepackage{indentfirst} % отступ в первом параграфе
+
+\usepackage{sectsty} % для центрирования названий частей
+\allsectionsfont{\centering}
+
+\usepackage{amsmath, amsfonts, amssymb} % куча стандартных математических плюшек
+
+\usepackage{mathtools}
+\usepackage{comment}
+
+\usepackage[top=2cm, left=1.2cm, right=1.2cm, bottom=2cm]{geometry} % размер текста на странице
+
+\usepackage{lastpage} % чтобы узнать номер последней страницы
+
+\usepackage{enumitem} % дополнительные плюшки для списков
+%  например \begin{enumerate}[resume] позволяет продолжить нумерацию в новом списке
+\usepackage{caption}
+
+\usepackage{url} % to use \url{link to web}
+
+
+\newcommand{\smallduck}{\begin{tikzpicture}[scale=0.3]
+    \duck[
+        cape=black,
+        hat=black,
+        mask=black
+    ]
+    \end{tikzpicture}}
+
+\usepackage{fancyhdr} % весёлые колонтитулы
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{Econometrics midterm, March 2025}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\usepackage{tcolorbox} % рамочки!
+
+\usepackage{todonotes} % для вставки в документ заметок о том, что осталось сделать
+% \todo{Здесь надо коэффициенты исправить}
+% \missingfigure{Здесь будет Последний день Помпеи}
+% \listoftodos - печатает все поставленные \todo'шки
+
+
+% более красивые таблицы
+\usepackage{booktabs}
+% заповеди из докупентации:
+% 1. Не используйте вертикальные линни
+% 2. Не используйте двойные линии
+% 3. Единицы измерения - в шапку таблицы
+% 4. Не сокращайте .1 вместо 0.1
+% 5. Повторяющееся значение повторяйте, а не говорите "то же"
+
+
+\setcounter{MaxMatrixCols}{20}
+% by crazy default pmatrix supports only 10 cols :)
+
+
+\usepackage{fontspec}
+\usepackage{libertine}
+\usepackage{polyglossia}
+
+\setmainlanguage{english}
+\setotherlanguages{english}
+
+% download "Linux Libertine" fonts:
+% http://www.linuxlibertine.org/index.php?id=91&L=1
+% \setmainfont{Linux Libertine O} % or Helvetica, Arial, Cambria
+% why do we need \newfontfamily:
+% http://tex.stackexchange.com/questions/91507/
+% \newfontfamily{\cyrillicfonttt}{Linux Libertine O}
+
+\AddEnumerateCounter{\asbuk}{\russian@alph}{щ} % для списков с русскими буквами
+% \setlist[enumerate, 2]{label=\asbuk*),ref=\asbuk*}
+
+%% эконометрические сокращения
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\Cov}{\mathbb{C}ov}
+\DeclareMathOperator{\Corr}{\mathbb{C}orr}
+\DeclareMathOperator{\Var}{\mathbb{V}ar}
+\DeclareMathOperator{\pCorr}{\mathrm{pCorr}}
+\DeclareMathOperator{\col}{col}
+\DeclareMathOperator{\row}{row}
+\DeclareMathOperator{\hCov}{\widehat{Cov}}
+\DeclareMathOperator{\hVar}{\widehat{Var}}
+
+
+\let\P\relax
+\DeclareMathOperator{\P}{\mathbb{P}}
+
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+
+\let\H\relax
+\DeclareMathOperator{\H}{\mathbb{H}}
+
+
+\DeclareMathOperator{\E}{\mathbb{E}}
+% \DeclareMathOperator{\tr}{trace}
+\DeclareMathOperator{\card}{card}
+
+\DeclareMathOperator{\Convex}{Convex}
+
+\newcommand{\SSR}{SS^{\text{res}}}
+\newcommand{\SSE}{SS^{\text{expl}}}
+\newcommand{\SST}{SST}
+\newcommand{\hb}{\hat\beta}
+\newcommand{\hy}{\hat y}
+\newcommand \cN{\mathcal{N}}
+\newcommand \dN{\mathcal{N}}
+\newcommand \dBin{\mathrm{Bin}}
+
+
+\newcommand \RR{\mathbb{R}}
+\newcommand \NN{\mathbb{N}}
+
+
+
+
+
+\begin{document}
+
+Short rules: one A4 cheatsheet is allowed, calculators are ok, offline, 120 minutes.
+
+\begin{enumerate}
+    \item Using a large dataset Donald Trump has estimated two parameters, $\hat a= 1$, $\hat b=2$ with $se(\hat a) = 0.2$, $se(\hat b) = 0.3$.
+    Estimators are uncorrelated.
+
+    \begin{enumerate}
+        \item {[6]} Find the standard error of $\hat \gamma = \hat a^2 \hat b + \hat b^2 \hat a$.
+        \item {[4]} Find the 95\% confidence interval for $\gamma = a^2 b + b^2 a$.
+    \end{enumerate}
+ 
+    \item The price level $p_t$ and production $q_t$ are endogeneous variables. 
+    Taxes $a_t$ and income $b_t$ are exogeneous. 
+    All variables are centered. 
+    The structural form is given by the system
+    \[
+        \begin{cases}
+            p_t = \alpha_1 q_t + \alpha_2 a_t + u_{1t} \\
+            q_t = \beta_1 p_t + \beta_2 b_t + u_{2t}.
+        \end{cases}        
+    \]
+    The estimates of the reduced form via equation-by-equation ols:
+    \[
+    \begin{cases}
+        p_t = 2 a_t + 4 b_t \\
+        q_t = - 3 a_t + 2 b_t.
+    \end{cases}
+    \]
+    \begin{enumerate}
+        \item {[6]} Recover the estimates of the coefficients in structural form.
+        \item {[4]} Describe how you will estimate the standard errors of the structural form. 
+    \end{enumerate}
+
+
+    \item The price level $p_t$, production $q_t$ and interest rate $r_t$ are endogeneous variables. 
+    Taxes $a_t$ and income $b_t$ are exogeneous. 
+    All variables are centered. 
+    The structural form is given by the system
+    \[
+        \begin{cases}
+            p_t = \alpha_1 q_t + \alpha_2 a_t + u_{1t} \\
+            q_t = \beta_1 p_t + \beta_2 b_t + u_{2t} \\
+            r_t = \gamma_1 p_t + \gamma_2 q_t + \gamma_3 b_t + u_{3t} \\
+        \end{cases}        
+    \]
+    \begin{enumerate}
+        \item {[5]} Check the order condition for each equation. 
+        \item {[5]} Check the rank condition for each equation.
+    \end{enumerate}
+    
+    \newpage
+    \item The logit model was estimated:
+    $\hat\P(y_1 = 1 \mid x_i, d_i) = F(-0.3 + 0.2 x_i + 0.1 d_i)$.
+    \begin{enumerate}
+        \item {[3]} Forecast the odds of $y_1 = 1$ for $x_i = 1$, $d_i = 1$.
+        \item {[3]} Find the partial effect of changing the value of the dummy variable $d_i$ from zero to one for $x_i = 1$.
+        \item {[4]} Find the marginal effect of changing the value of the variable $x_i$ for $x_i = 1$ and $d_i = 1$.
+    \end{enumerate}
+
+
+    \item The probit model was estimated using $1000$ observations with $200$ observations where $y_i = 1$. 
+    Standard errors are given in brackets.
+    \[
+    \hat\P(y_1 = 1 \mid x_i, d_i) = F(\underset{(0.01)}{-0.3} + \underset{(0.02)}{0.2} x_i + \underset{(0.01)}{0.1} d_i), \quad AIC = 606.
+    \]
+    \begin{enumerate}
+        \item {[3]} Provide a 95\% confidence interval for $\beta_x$.
+        \item {[4]} Find the log-likelihood of the trivial probit model, $\hat\P(y_1 = 1 \mid x_i, d_i) = F(\hb_0)$.
+        \item {[3]} Compare the initial model and the trivial model using likelihood ratio test at 5\% significance level.
+    \end{enumerate}
+
+    Hint: 5\% critical values are $\chi^2_1 = 3.84$,  $\chi^2_2 = 5.99$, $\chi^2_3 = 7.81$, $\chi^2_4 = 9.49$.
+
+
+    \item (from UOL past exams) It is postulated that a reasonable demand–supply model for the wine industry in Australia would be given by:
+
+    \begin{align*}
+        Q_t &= \alpha_0 + \alpha_1 P^w_t + \alpha_2 P^b_t + \alpha_3 Y_t + \alpha_4 A_t + u_t \quad \text{(demand)} \\
+        Q_t &= \beta_0 + \beta_1 P^w_t + \beta_3 S_t + v_t \quad \text{(supply)}
+    \end{align*}
+    
+    where $Q_t$ = real per capita consumption of wine, $P^w_t$ = price of wine relative to CPI, $P^b_t$ = price of beer relative to CPI, $Y_t$ = real per capita disposable income, $A_t$ = real per capita advertising expenditure, and $S_t$ = storage cost. CPI is the Consumer Price Index.
+    
+    The endogenous variables in this model are $Q$ and $P^w$, and the exogenous variables are $P^b$, $Y$, $A$, and $S$.
+    
+    The variance of $u_t$ and $v_t$ are, respectively, $\sigma_u^2$ and $\sigma_v^2$, and $\Cov(u_t, v_t) = \sigma_{uv} \neq 0$. The errors do not exhibit any correlation over time.
+    
+    \begin{enumerate}
+        \item {[3]} Provide the reduced form for $P^w_t$. 
+        
+        \item {[2]} The OLS estimation of the demand function, based on annual data from 1955–1975 ($T = 20$), gave the following results (all variables are in logs and figures in parentheses are $t$-ratios).
+    
+        \begin{align*}
+            \hat{Q}_t &= -23.651 + 1.158 P^w_t - 0.275 P^b_t + 3.212 Y_t - 0.603 A_t. \\
+            & \quad (-6.04) \quad  \quad  (4.0) \quad  \quad (-0.45) \quad  \quad  (4.5)  \quad \quad (-1.3)
+        \end{align*}
+    
+        All the coefficients except that of $Y$ have the wrong signs. The coefficient of $P^w$ (price elasticity of demand, $\alpha_1$) not only has the wrong sign but also appears significant.
+    
+        Explain why the OLS parameter estimator may give rise to these counter-intuitive results. You are expected to use your results in part (a) to support your answer. 
+    
+        \item {[3]} The supply equation is overidentified. Clearly explain this terminology. What distinguishes overidentification from exact identification and underidentification? Provide one set of assumptions that would render the supply equation exactly identified. 
+    
+        \item {[2]} Discuss how you should estimate the supply equation in light of the overidentification. 
+    \end{enumerate}
+
+
+\end{enumerate}
+
+
+
+
+
+\end{document}
+
