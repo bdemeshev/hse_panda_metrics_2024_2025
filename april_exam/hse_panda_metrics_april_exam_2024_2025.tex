@@ -1,0 +1,289 @@
+% arara: xelatex
+\documentclass[12pt]{article}
+
+% \usepackage{physics}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+
+\usepackage{tikzducks}
+
+\usepackage{tikz} % картинки в tikz
+\usepackage{microtype} % свешивание пунктуации
+
+\usepackage{array} % для столбцов фиксированной ширины
+
+\usepackage{indentfirst} % отступ в первом параграфе
+
+\usepackage{sectsty} % для центрирования названий частей
+\allsectionsfont{\centering}
+
+\usepackage{amsmath, amsfonts, amssymb} % куча стандартных математических плюшек
+
+\usepackage{mathtools}
+\usepackage{comment}
+
+\usepackage[top=2cm, left=1.2cm, right=1.2cm, bottom=2cm]{geometry} % размер текста на странице
+
+\usepackage{lastpage} % чтобы узнать номер последней страницы
+
+\usepackage{enumitem} % дополнительные плюшки для списков
+%  например \begin{enumerate}[resume] позволяет продолжить нумерацию в новом списке
+\usepackage{caption}
+
+\usepackage{url} % to use \url{link to web}
+
+
+\newcommand{\smallduck}{\begin{tikzpicture}[scale=0.3]
+    \duck[
+        cape=black,
+        hat=black,
+        mask=black
+    ]
+    \end{tikzpicture}}
+
+\usepackage{fancyhdr} % весёлые колонтитулы
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{Econometrics midterm demo, April 2025}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\usepackage{tcolorbox} % рамочки!
+
+\usepackage{todonotes} % для вставки в документ заметок о том, что осталось сделать
+% \todo{Здесь надо коэффициенты исправить}
+% \missingfigure{Здесь будет Последний день Помпеи}
+% \listoftodos - печатает все поставленные \todo'шки
+
+
+% более красивые таблицы
+\usepackage{booktabs}
+% заповеди из докупентации:
+% 1. Не используйте вертикальные линни
+% 2. Не используйте двойные линии
+% 3. Единицы измерения - в шапку таблицы
+% 4. Не сокращайте .1 вместо 0.1
+% 5. Повторяющееся значение повторяйте, а не говорите "то же"
+
+
+\setcounter{MaxMatrixCols}{20}
+% by crazy default pmatrix supports only 10 cols :)
+
+
+\usepackage{fontspec}
+\usepackage{libertine}
+\usepackage{polyglossia}
+
+\setmainlanguage{english}
+\setotherlanguages{english}
+
+% download "Linux Libertine" fonts:
+% http://www.linuxlibertine.org/index.php?id=91&L=1
+% \setmainfont{Linux Libertine O} % or Helvetica, Arial, Cambria
+% why do we need \newfontfamily:
+% http://tex.stackexchange.com/questions/91507/
+% \newfontfamily{\cyrillicfonttt}{Linux Libertine O}
+
+\AddEnumerateCounter{\asbuk}{\russian@alph}{щ} % для списков с русскими буквами
+% \setlist[enumerate, 2]{label=\asbuk*),ref=\asbuk*}
+
+%% эконометрические сокращения
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\Cov}{\mathbb{C}ov}
+\DeclareMathOperator{\Corr}{\mathbb{C}orr}
+\DeclareMathOperator{\Var}{\mathbb{V}ar}
+\DeclareMathOperator{\pCorr}{\mathrm{pCorr}}
+\DeclareMathOperator{\col}{col}
+\DeclareMathOperator{\row}{row}
+\DeclareMathOperator{\hCov}{\widehat{Cov}}
+\DeclareMathOperator{\hVar}{\widehat{Var}}
+
+
+\let\P\relax
+\DeclareMathOperator{\P}{\mathbb{P}}
+
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+
+\let\H\relax
+\DeclareMathOperator{\H}{\mathbb{H}}
+
+
+\DeclareMathOperator{\E}{\mathbb{E}}
+% \DeclareMathOperator{\tr}{trace}
+\DeclareMathOperator{\card}{card}
+
+\DeclareMathOperator{\Convex}{Convex}
+
+\newcommand{\SSR}{SS^{\text{res}}}
+\newcommand{\SSE}{SS^{\text{expl}}}
+\newcommand{\SST}{SST}
+\newcommand{\hb}{\hat\beta}
+\newcommand{\hy}{\hat y}
+\newcommand \cN{\mathcal{N}}
+\newcommand \dN{\mathcal{N}}
+\newcommand \dBin{\mathrm{Bin}}
+
+\newcommand{\const}{\text{const}}
+
+\newcommand \RR{\mathbb{R}}
+\newcommand \NN{\mathbb{N}}
+
+
+
+
+
+\begin{document}
+
+\begin{enumerate}
+    \item Zmey Gorynych worries about his weight. 
+    Each year he makes weight measurements.
+    He is very happy when his weight is below $1000$ kilograms, does not record the measurement precisely and eats much more young beautiful princesses.
+
+    Here are his recordings for the last $5$ years $y = (\leq 1000, 1200, 1500, 1300, \leq 1000)$.
+
+    Assume that his weight measurements are uniform on $[0, a]$ and independent.
+
+    \begin{enumerate}
+        \item {[7]} Estimate unknown $a$ using maximum likelihood. 
+        \item {[3]} Estimate the probability that the next year Zmey Gorynych will be happy about his weight and hence will eat many young beautiful princesses.
+    \end{enumerate}
+    
+    \item % change
+Roman Bokhyan and Rene Khobua\footnote{Look up who is this guy after the exam!} praise the econometrics course, even though they don't attend lectures. 
+The amount of praise $y_t$ they collectively give on day $t$ depends on the quality of the lecture $x_t$ and random factors in Roman and Rene's lives $r_t \sim \cN(0, \sigma^2)$,
+$y_t = \beta_1 + \beta_2 x_t + r_t$.
+
+If the praise exceeds an upper threshold $y_h$, the lecturer Boris becomes too arrogant.
+If the praise falls below a lower threshold $y_l$, the class teacher Maria gets very upset.
+Both outcomes are unacceptable for the course.
+
+\begin{enumerate}
+    \item {[3]} What is the probability that for a given $x_t$, Roman and Rene will give an acceptable amount of praise?
+    \item {[7]} Find the expected amount of praise given a known $x_t$, conditional on the praise level being acceptable.
+\end{enumerate}
+
+    % Роман Бохян и Рене Хобуа\footnote{посмотрите после экзамена, кто это!} хвалят курс по эконометрике, хотя и не ходят на лекции. 
+    % Количество похвалы $y_t$, которое они в сумме возносят в день $t$, зависит от удачности лекции $x_t$ и случайностей в жизни Романа и Рене $r_t \sim \cN(0, \sigma^2)$,
+    % $y_t = \beta_1 + \beta_2 x_t + r_t$.
+
+    % Если похвалы слишком много, больше уровня $y_h$, то лектор Борис слишком зазнаётся.
+    % Если похвалы слишком мало, меньше уровня $y_l$, то семинарист Мария очень расстраивается.
+    % И то, и то, одинаково плохо и не приемлемо для курса. 
+
+    % \begin{enumerate}
+    %     \item {[3]} Какова вероятность того, что для заданного $x_t$ Роман и Рене вознесут приемлемое количество похвалы?
+    %     \item {[7]} Найдите ожидаемое количество похвалы при известном $x_t$, если известно, что уровень похвалы оказался приемлемым.
+    % \end{enumerate}
+
+    Your answer may contain  $x_t$, $\beta_1$, $\beta_2$, $\sigma^2$, standard normal density or cumulative distribution function.
+    
+
+    \item Classify the processes $x_t$ and $y_t$ as stationary, trend stationary, difference stationary, integrated of order $d$.
+    Here $(u_t)$ is a white noise independent of $(x_s)$ and $(y_s)$ for $s < t$.
+    \begin{enumerate}
+        \item {[5]} $x_t = u_1 + 2u_2 + 3u_3 + 3u_4 + 3u_5 + \dots + 3u_{t-3} + 3u_{t-2} + 2u_{t-1} + u_t$; 
+        \item {[5]} $y_t = 6 + 3t + u_t + 0.5 u_{t-1} + 0.5^2 u_{t-2} + 0.5^3 u_{t-3} + \dots$.
+    \end{enumerate}
+
+\newpage
+    \item 
+Consider the probit model
+\[
+\P(y = 1 \mid z_1, z_2, q) = F(z_1 \delta + \gamma z_2 q),
+\]
+where $F$ is a standard normal cdf and $q$ is independent of $z$ and has standard normal distribution. 
+Here we omit the observation lower index $i$ for simplicity. 
+\begin{enumerate}
+\item {[3]} Find the marginal effect of $z_2$ for fixed $z_1$ and $q$.
+\end{enumerate}
+Let $y^*$ be the latent variable of the probit model, $y^* = z_1 \delta + \gamma z_2 q + u$.
+\begin{enumerate}[resume]
+    \item {[3]} Find the conditional distribution of $\gamma z_2 q + u$ for fixed $z_1$ and $z_2$.
+    \item {[4]} Find $\P(y = 1 \mid z_1, z_2)$. 
+\end{enumerate}
+
+Your answers may contain $z_1$, $z_2$, $\delta$, $\gamma$, normal cdf or pdf. 
+
+
+    \item Consider the following vector moving average process
+    \[
+    \begin{pmatrix}
+        x_t \\
+        y_t 
+    \end{pmatrix} =
+    \begin{pmatrix}
+        1 \\
+        -2
+    \end{pmatrix} + 
+    \begin{pmatrix}
+        6 & 1 \\
+        1 & 6 \\
+    \end{pmatrix}
+    \begin{pmatrix}
+        v_t \\
+        w_t
+    \end{pmatrix} +
+    \begin{pmatrix}
+        2 & -1 \\
+        0 & 3 \\
+    \end{pmatrix}
+    \begin{pmatrix}
+        v_{t-1} \\
+        w_{t-1}
+    \end{pmatrix} +
+    \begin{pmatrix}
+        1 & 0 \\
+        2 & -2 \\
+    \end{pmatrix}
+    \begin{pmatrix}
+        v_{t-2} \\
+        w_{t-2}
+    \end{pmatrix}.
+    \]
+    Here $u_t = (v_t, w_t)$ is a two-dimensional white noise with $\E(u_t)=0$ and $\Var(u_t) = \begin{pmatrix}
+        1 & 0 \\
+        0 & 1 \\
+    \end{pmatrix}$.
+
+    \begin{enumerate}
+        \item {[3]} Is the process $(x_t)$ stationary? Is the process $(y_t)$ stationary?
+        \item {[4]} Find the cross-covariance $\Cov(x_t, y_{t-1})$. 
+        \item {[3]} Are the cross covariances $\Cov(x_{t-1}, y_t)$ and $\Cov(x_t, y_{t-1})$ always equal for the vector moving average process?
+    \end{enumerate}
+    
+    \item (from the LSE course) Let us consider the following model:
+     $y_t = \alpha + \delta t + u_t \quad \text{where} \quad u_t = \rho u_{t-1} + e_t$
+    and \( e_t \) is i.i.d. with zero mean and variance \( \sigma^2 \).
+    
+    \begin{enumerate}
+        \item {[2]} Discuss the following statement: ``If \(\{u_t\}_{t=1}^T\) is stationary and weakly dependent then \(\{y_t\}_{t=1}^T\) is trend-stationary (and weakly dependent).''
+        
+        \item {[3]} Show that you can write the equation in the following form:
+        
+        \[ \Delta y_t = \beta_0 + \beta_1 y_{t-1} + \beta_2 t + e_t \]
+        
+        where \( \beta_0 = \alpha(1 - \rho) + \rho \delta, \, \beta_1 = \rho - 1 \), and \( \beta_2 = \delta(1 - \rho) \).
+        
+        \textit{Hint:} Subtract from the original model \( \rho \) times the model one period lagged.
+        
+        \item {[3]} Show that under the null of a unit root, \( y_t \) is a random walk with drift.
+        
+        \item {[2]} Discuss the Dickey-Fuller test in detail. (Provide the null and alternative hypotheses, test statistic, and rejection rule.)
+    \end{enumerate}
+\end{enumerate}
+
+\end{document}
